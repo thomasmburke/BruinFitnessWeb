@@ -110,3 +110,6 @@ bruin-fitness/.firebase
 bruin-fitness/node_modules
 bruin-fitness/firebase-debug.log
 bruin-fitness/functions/node_modules
+
+#Mac
+.DS_Store
