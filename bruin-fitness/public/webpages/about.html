@@ -2,18 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>About Us</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="CrossFit, gym, bruin fitness" />
     <!-- bootstrap and fonts -->
     <!-- bootstrap and fonts -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+    <!-- animations -->
+    <!-- may need to use below 4 as breaking changes were applied
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+
     <link href="../styles/style.css" rel="stylesheet" />
   </head>
   <body>
@@ -21,8 +34,8 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
       <div class="container-fluid">
         <!-- href # will bring you to the top of the page-->
-        <a class="navbar-brand" href="#"
-          ><img src="../images/baseline_fitness_center_black_18dp.png"
+        <a class="navbar-brand" href="/index.html"
+          ><img src="/images/baseline_fitness_center_black_18dp.png"
         /></a>
         <button
           class="navbar-toggler"
@@ -37,28 +50,74 @@
           <!-- ml-auto pushes the navigation items to the right hand side if screen is large enough and not using the hamburger menu-->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                id="aboutDropDown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                href="/webpages/about.html"
+                >About</a
+              >
+              <ul
+                class="first dropdown-menu fade-up"
+                aria-labelledby="aboutDropDown"
+              >
+                <li>
+                  <a class="dropdown-item" href="/webpages/about.html"
+                    >About Us</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#">Team</a></li>
+                <li><a class="dropdown-item" href="#">Location</a></li>
+                <li><a class="dropdown-item" href="#">FAQ</a></li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
+              <a class="nav-link" href="#">WOD</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Schedule</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/webpages/about.html">About</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <figure>
-      <div class="fixed-wrap">
-        <div id="fixed">
-          <h1>About Us</h1>
+    <!--add a top padding of 16px-->
+    <div class="wrapper pt-3">
+      <div class="col-12 px-4">
+        <div class="os-animation" data-animation="fadeInUp">
+          <p class="lead">
+            <strong>Mission Statement:</strong> Our goal is to have a one on one
+            personal experience for our members who we often refer to as our
+            extended family. Learn more about us by getting to know and love our
+            facility. We at the gym pride ourselves on changing the lives of as
+            many individuals as possible. We've taken years of planning and
+            developing The Gym layout for the most optimal fitness experience
+            possible for our fantastic members.
+          </p>
         </div>
+        <!-- End Animation -->
       </div>
-    </figure>
+      <!-- End Column -->
+    </div>
+    <!-- End Max-width Wrapper -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+    <!-- Waypoints -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="../scripts/utils.js"></script>
   </body>
 </html>
