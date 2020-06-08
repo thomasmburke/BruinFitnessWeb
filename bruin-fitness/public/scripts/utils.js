@@ -3,8 +3,8 @@ $(document).ready(function () {
   //when document(DOM) loads completely
   if ($(window).width() < 768) {
     //if the window is less than 768px
-    $("div").attr("data-animation", "fadeInUp"); //any div with the "data-animation" attribute should have it's value (animation style) changed to "fadeInUp"
-    $("div").attr("data-delay", "0s"); //remove data delay
+    $("div").attr("data-animation", "animate__fadeInUp"); //any div with the "data-animation" attribute should have it's value (animation style) changed to "fadeInUp"
+    $("div").attr("animate__data-delay", "0s"); //remove data delay
   }
 });
 
@@ -17,7 +17,7 @@ $(function () {
       //for every element in items run function
       var osElement = $(this), //set osElement to the current
         osAnimationClass = osElement.attr("data-animation"), //get value of attribute data-animation type
-        osAnimationDelay = osElement.attr("data-delay"); //get value of attribute data-delay time
+        osAnimationDelay = osElement.attr("animate__data-delay"); //get value of attribute data-delay time
 
       osElement.css({
         //change css of element
@@ -31,7 +31,7 @@ $(function () {
       osTrigger.waypoint(
         function () {
           //scroll upwards and downwards
-          osElement.addClass("animated").addClass(osAnimationClass); //add animated and the data-animation class to the element.
+          osElement.addClass("animate__animated").addClass(osAnimationClass); //add animated and the data-animation class to the element.
         },
         {
           triggerOnce: true, //only once this animation should happen
