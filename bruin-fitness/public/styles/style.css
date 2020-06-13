@@ -18,6 +18,12 @@ other than navbar, carousel, banner & footer --*/
   overflow: hidden;
 }
 
+/*-- Border Around Callout Text & Button --*/
+.callout-border {
+  border: 0.15rem solid #039509;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
 /* rem =root font size
 1 rem = 16 pixels
 extra padding to the vabar box itself
