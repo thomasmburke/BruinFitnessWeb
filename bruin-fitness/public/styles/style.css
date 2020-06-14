@@ -9,6 +9,12 @@ body {
   color: #222;
 }
 
+/* helps to center items in row items*/
+.row {
+  display: flex;
+  align-items: center;
+}
+
 /*-- Max-width Container For Elements
 other than navbar, carousel, banner & footer --*/
 .wrapper {
@@ -16,6 +22,28 @@ other than navbar, carousel, banner & footer --*/
   margin: 0 auto;
   padding: 0 0.5rem;
   overflow: hidden;
+}
+
+/*-- Headings --*/
+h1 {
+  text-align: center;
+  font-size: 175%;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 0.6rem 0;
+}
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+h5 {
+  font-weight: 700;
+}
+
+/*-- Make Paragraph 'lead' Class Text Larger--*/
+p.lead {
+  font-size: 1.1rem;
 }
 
 /*-- Border Around Callout Text & Button --*/
@@ -64,6 +92,12 @@ extra padding to the vabar box itself
   font-weight: 500;
   text-shadow: 1px 1px 10px #000;
   padding-bottom: 1rem;
+}
+
+/*-- Buttons --*/
+.btn {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
