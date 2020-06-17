@@ -184,6 +184,15 @@ footer a {
   color: #d5d5d5;
 }
 
+/*============= PRICING PAGE =============*/
+
+/*-- Pricing Table --*/
+.thread-green {
+  background-color: #039509;
+  border-bottom: 0.15rem solid #039509;
+}
+/*=========== END PRICING PAGE ===========*/
+
 /*---Media Queries --*/
 
 /* ============ only desktop view ============ */
