@@ -24,6 +24,10 @@ other than navbar, carousel, banner & footer --*/
   overflow: hidden;
 }
 
+.thin-wrapper {
+  width: 50%;
+}
+
 /*-- Headings --*/
 h1 {
   text-align: center;
@@ -39,6 +43,9 @@ h4 {
 }
 h5 {
   font-weight: 700;
+}
+.white-text {
+  color: white;
 }
 
 /*-- Make Paragraph 'lead' Class Text Larger--*/
@@ -189,7 +196,6 @@ footer a {
 /*-- Pricing Table --*/
 .thread-green {
   background-color: #039509;
-  border-bottom: 0.15rem solid #039509;
 }
 
 table {
