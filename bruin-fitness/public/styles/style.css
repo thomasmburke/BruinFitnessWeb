@@ -186,9 +186,21 @@ extra padding to the vabar box itself
 }
 
 footer {
-  background-color: #3f3f3f;
-  color: #d5d5d5;
+  background-color: #070707;
+  color: #4f4f4f;
   padding-top: 2rem;
+}
+footer a {
+  color: #4f4f4f;
+}
+footer p {
+  padding: 0px 0px 7px;
+  font-size: 11.5px;
+  margin: 0px;
+}
+footer h5 {
+  color: #ffffff;
+  margin: 0px;
 }
 
 hr.light {
@@ -202,10 +214,6 @@ hr.light-100 {
   width: 100%;
   margin-top: 0.8rem;
   margin-bottom: 1rem;
-}
-
-footer a {
-  color: #d5d5d5;
 }
 
 /*============= PRICING PAGE =============*/
