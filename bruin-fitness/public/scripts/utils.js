@@ -1,12 +1,12 @@
 /*========== MAKE ALL ANIMATION "FADEINUP" ON MOBILE ==========*/
-$(document).ready(function () {
-  //when document(DOM) loads completely
-  if ($(window).width() < 768) {
-    //if the window is less than 768px
-    $("div").attr("data-animation", "animate__fadeInUp"); //any div with the "data-animation" attribute should have it's value (animation style) changed to "fadeInUp"
-    $("div").attr("animate__data-delay", "0s"); //remove data delay
-  }
-});
+// $(document).ready(function () {
+//   //when document(DOM) loads completely
+//   if ($(window).width() < 768) {
+//     //if the window is less than 768px
+//     $("div").attr("data-animation", "animate__fadeInUp"); //any div with the "data-animation" attribute should have it's value (animation style) changed to "fadeInUp"
+//     $("div").attr("animate__data-delay", "0s"); //remove data delay
+//   }
+// });
 
 /*========== WAYPOINTS ANIMATION DELAY ==========*/
 $(function () {
@@ -41,7 +41,6 @@ $(function () {
     });
   }
 
-  // onScrollInitCounterUp();
   onScrollInit($(".os-animation")); //function call with only items
   onScrollInit($(".staggered-animation"), $(".staggered-animation-container")); //function call with items and trigger
 });
