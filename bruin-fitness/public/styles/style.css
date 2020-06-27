@@ -321,6 +321,9 @@ table {
     font-size: 2em;
     padding: 0.7rem;
   }
+  p {
+    font-size: 14px;
+  }
 }
 
 /*---Firefox Bug Fix --*/
