@@ -184,7 +184,7 @@ extra padding to the vabar box itself
 .fa-youtube:hover {
   color: #d5d5d5;
 }
-
+/* Footer CSS START */
 footer {
   background-color: #070707;
   color: #4f4f4f;
@@ -198,10 +198,23 @@ footer p {
   font-size: 11.5px;
   margin: 0px;
 }
+footer h6 {
+  color: #ffffff;
+  margin: 0px;
+  padding: 0px 0px 13px;
+  /* padding: 0px; */
+  font-size: 13px;
+  /* text-decoration: underline; */
+}
 footer h5 {
   color: #ffffff;
   margin: 0px;
 }
+footer div.col-12 {
+  padding: 0px 16px;
+}
+
+/* Footer CSS START */
 
 hr.light {
   border-top: 1px solid #d5d5d5;
