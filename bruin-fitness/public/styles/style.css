@@ -81,23 +81,29 @@ p.lead {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
-/* rem =root font size
-1 rem = 16 pixels
-extra padding to the vabar box itself
-*/
+/* NAVBAR STYLING START*/
 .navbar {
   padding: unset;
 }
-
 /* add padding to each of the nav bar list items*/
 .navbar-nav li {
   padding-right: 20px;
 }
-
 .nav-link {
   font-size: 1.1em !important;
   padding: 1.2rem;
 }
+/* .navbar .nav-item .dropdown-menu {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  background-color: #f8f9fa;
+  margin-top: 0 !important;
+  border-radius: 0;
+  z-index: 1000;
+} */
+/* NAVBAR STYLING START*/
 
 .carousel-inner img {
   height: 100%;
@@ -252,7 +258,7 @@ table {
 /*---Media Queries --*/
 
 /* ============ only desktop view ============ */
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
   .navbar .nav-item .dropdown-menu {
     display: block;
     opacity: 0;
