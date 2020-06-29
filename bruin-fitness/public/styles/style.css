@@ -280,6 +280,9 @@ thead tr th {
   .dropdown-item:hover {
     color: #039509;
   }
+  .dropdown-item:active {
+    background-color: #f8f9fa;
+  }
 }
 /* ============ desktop view .end// ============ */
 
