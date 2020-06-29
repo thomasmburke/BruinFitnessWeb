@@ -46,10 +46,6 @@ h5 {
 }
 
 /* NEEDS CLEANUP */
-.white-text {
-  color: white;
-}
-
 .dnow-regionsContent {
   background-color: SlateGray;
   position: relative;
@@ -93,17 +89,6 @@ p.lead {
   font-size: 1.1em !important;
   padding: 1.2rem;
 }
-
-/* .navbar .nav-item .dropdown-menu {
-  display: block;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-  background-color: #f8f9fa;
-  margin-top: 0 !important;
-  border-radius: 0;
-  z-index: 1000;
-} */
 /* NAVBAR STYLING START*/
 
 .carousel-inner img {
@@ -239,21 +224,23 @@ hr.light-100 {
 /*============= PRICING PAGE =============*/
 
 /*-- Pricing Table --*/
-.thread-green {
+thead {
   background-color: #039509;
 }
-
 table {
   border-collapse: collapse;
   display: table;
   box-sizing: border-box;
   border-color: grey;
 }
-
 .box-shadow--6dp {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
+thead tr th {
+  color: white;
+}
+
 /*=========== END PRICING PAGE ===========*/
 
 /*---Media Queries --*/
