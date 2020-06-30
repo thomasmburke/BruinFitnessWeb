@@ -45,7 +45,7 @@ h5 {
   font-weight: 700;
 }
 
-/* TEAM PAGE START */
+/*============= TEAM PAGE START =============*/
 .card {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
@@ -60,7 +60,7 @@ h5 {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
-/* TEAM PAGE END */
+/*============= TEAM PAGE END =============*/
 
 /* NEEDS CLEANUP */
 .dnow-regionsContent {
@@ -94,7 +94,7 @@ p.lead {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
-/* NAVBAR STYLING START*/
+/*============= NAVBAR SYLING START =============*/
 .navbar {
   padding: unset;
 }
@@ -106,7 +106,7 @@ p.lead {
   font-size: 1.1em !important;
   padding: 1.2rem;
 }
-/* NAVBAR STYLING START*/
+/*============= NAVBAR SYLING END =============*/
 
 .carousel-inner img {
   height: 100%;
@@ -239,8 +239,6 @@ hr.light-100 {
 }
 
 /*============= PRICING PAGE =============*/
-
-/*-- Pricing Table --*/
 thead {
   background-color: #039509;
 }
@@ -257,7 +255,6 @@ table {
 thead tr th {
   color: white;
 }
-
 /*=========== END PRICING PAGE ===========*/
 
 /*---Media Queries --*/
@@ -382,35 +379,7 @@ thead tr th {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
-/*--- Fixed Background Image --*/
-figure {
-  position: relative;
-  width: 100%;
-  height: 60%;
-  margin: 0 !important;
-}
-.fixed-wrap {
-  clip: rect(0, auto, auto, 0);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-#fixed {
-  background-image: url("../images/crossfit_banner_stock_image.jpg");
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: transform;
-}
+
 /*--- Bootstrap Padding Fix --*/
 [class*="col-"] {
   padding: 1rem;
