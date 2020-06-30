@@ -45,6 +45,18 @@ h5 {
   font-weight: 700;
 }
 
+/* TEAM PAGE START */
+.card {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+}
+.card-img-top {
+  border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+/* TEAM PAGE END */
+
 /* NEEDS CLEANUP */
 .dnow-regionsContent {
   background-color: SlateGray;
