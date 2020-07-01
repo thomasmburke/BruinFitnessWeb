@@ -1,11 +1,11 @@
 TODO:
+- Add Location to footer
+- Use React Framework
+- Have schedule.html pull from Firestore
+- update URLs by either having the navbar do rewrites or updated folder structure of webpages
 
 Additional web pages needed:
-- "About the Gym" page
-- "Meet the coaches" page
 - "Contact Us"
-- Membership Pricing (class pass / punch card ?)
-    - drop in section with link to waiver
 - Schedule
 - WOD
 - FAQ
@@ -17,5 +17,5 @@ Nice to have web pages / page sections:
 - Shop apparel
 - Member Spotlight
 
-Navbar needs:
-- Make dropdown look prettier (on both smaller and larger screens)
+Navbar needs nice to haves:
+- Make dropdown look prettier (on smaller screens)
