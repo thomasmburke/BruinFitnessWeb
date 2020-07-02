@@ -3,7 +3,7 @@
 // TODO: Enable firebase performance monitoring
 firebase.performance();
 
-var firestore = firebase.firestore();
+// var firestore = firebase.firestore();
 /*
 document.getElementById("clickMe").onclick = function () {
     console.log('composite index query triggered...');
