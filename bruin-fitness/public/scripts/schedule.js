@@ -1,13 +1,13 @@
 "use strict";
 
+// Initialize Firestore
 var firestore = firebase.firestore();
-const docRef = firestore.doc(
-  "schedules/San Leandro/schedule/LR7CLQA7fs5h07DAOpWb"
-);
+// Get a reference to the schedule collection of interest
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
 /**
  * Summary: Reach out to Firestore and get all schedule entry data
+ * @return {Object} Object containing multiple schedule entries
  */
 async function getSchedule() {
   let schedule = [];
@@ -34,6 +34,7 @@ async function getSchedule() {
 
 /**
  * Summary: Create table body and header (optional)
+ * @param {HTMLTableElement}   table           The dynamically populated HTML Table element
  */
 async function generateScheduleTable() {
   let schedule = await getSchedule();
@@ -42,12 +43,14 @@ async function generateScheduleTable() {
   //   let scheduleHeaders = Object.keys(schedule[0]);
   //   generateTableHead(table, scheduleHeaders);
   generateTableBody(table, schedule);
+  return table;
 }
 
 /**
  * Summary: Create table header
  * @param {HTMLTableElement}   table           The HTML Table element we look to add headers to
  * @param {Array}   dataHeaders          List of table headers
+ * @return {HTMLTableSectionElement} The HTML table header element with added header row
  */
 function generateTableHead(table, dataHeaders) {
   let thead = table.createTHead();
@@ -58,12 +61,14 @@ function generateTableHead(table, dataHeaders) {
     th.appendChild(text);
     row.appendChild(th);
   });
+  return thead;
 }
 
 /**
  * Summary: Create table body and populate it with schedule data
- * @param {HTMLTableElement}   table           The HTML Table element we look to add headers to
+ * @param {HTMLTableElement}   table           The HTML Table element we look to add a table body to
  * @param {Array}   data          All the data entries to be added as rows to the table body
+ * @return {HTMLTableSectionElement} The HTML table body element with added rows of data
  */
 function generateTableBody(table, data) {
   var tbdy = document.createElement("tbody");
@@ -76,6 +81,7 @@ function generateTableBody(table, data) {
       cell.appendChild(text);
     }
   });
+  return tbdy;
 }
 
 // DYNAMIC SCHEDULE TABLE CREATION
