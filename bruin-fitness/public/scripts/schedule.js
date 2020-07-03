@@ -6,18 +6,23 @@ const docRef = firestore.doc(
 );
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
+/**
+ * Summary: Reach out to Firestore and get all schedule entry data
+ */
 async function getSchedule() {
   let schedule = [];
   try {
     var querySnapshot = await scheduleRef.get();
+    // querySnapshot holds multiple documents, we need to unpack all of them
     querySnapshot.forEach(function (doc) {
       let docData = doc.data();
       let workoutType = docData.workoutType;
+      // for each firestore document create a schedule entry
       docData.scheduleTimes.forEach((scheduleEntry) =>
         schedule.push({
-          workoutType: workoutType,
-          day: scheduleEntry.day,
-          time: scheduleEntry.time,
+          "Workout Type": workoutType,
+          Day: scheduleEntry.day,
+          Time: scheduleEntry.time,
         })
       );
     });
@@ -27,44 +32,51 @@ async function getSchedule() {
   }
 }
 
+/**
+ * Summary: Create table body and header (optional)
+ */
 async function generateScheduleTable() {
   let schedule = await getSchedule();
-  let table = document.querySelector("table");
-  let scheduleHeaders = Object.keys(schedule[0]);
+  let table = document.querySelector("#scheduleTable");
+  // Get the keys of the javascript schedule object
+  //   let scheduleHeaders = Object.keys(schedule[0]);
+  //   generateTableHead(table, scheduleHeaders);
   generateTableBody(table, schedule);
-  generateTableHead(table, scheduleHeaders);
 }
 
-generateScheduleTable();
-
-// DYNAMIC SCHEDULE TABLE CREATION
-
-let mountains = [
-  { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-  { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-  { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-  { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-  { name: "Monte Amiata", height: 1738, place: "Siena" },
-];
-
-function generateTableHead(table, data) {
+/**
+ * Summary: Create table header
+ * @param {HTMLTableElement}   table           The HTML Table element we look to add headers to
+ * @param {Array}   dataHeaders          List of table headers
+ */
+function generateTableHead(table, dataHeaders) {
   let thead = table.createTHead();
   let row = thead.insertRow();
-  for (let key of data) {
+  dataHeaders.forEach((header) => {
     let th = document.createElement("th");
-    let text = document.createTextNode(key);
+    let text = document.createTextNode(header);
     th.appendChild(text);
     row.appendChild(th);
-  }
+  });
 }
 
+/**
+ * Summary: Create table body and populate it with schedule data
+ * @param {HTMLTableElement}   table           The HTML Table element we look to add headers to
+ * @param {Array}   data          All the data entries to be added as rows to the table body
+ */
 function generateTableBody(table, data) {
-  for (let element of data) {
-    let row = table.insertRow();
-    for (let x in element) {
+  var tbdy = document.createElement("tbody");
+  table.appendChild(tbdy);
+  data.forEach((scheduleObj) => {
+    let row = tbdy.insertRow();
+    for (let key in scheduleObj) {
       let cell = row.insertCell();
-      let text = document.createTextNode(element[x]);
+      let text = document.createTextNode(scheduleObj[key]);
       cell.appendChild(text);
     }
-  }
+  });
 }
+
+// DYNAMIC SCHEDULE TABLE CREATION
+generateScheduleTable();
