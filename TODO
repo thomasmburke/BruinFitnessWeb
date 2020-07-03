@@ -1,8 +1,11 @@
 TODO:
 - Add Location to footer
-- Use React Framework
-- Have schedule.html pull from Firestore
 - update URLs by either having the navbar do rewrites or updated folder structure of webpages
+- Schedule table should be ordered
+- Schedule table should be filterable by workout type
+
+Nice to have:
+- Leverage React
 
 Additional web pages needed:
 - "Contact Us"
