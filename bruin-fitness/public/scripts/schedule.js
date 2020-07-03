@@ -4,6 +4,20 @@
 var firestore = firebase.firestore();
 // Get a reference to the schedule collection of interest
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
+// filterDefaults for table dropdown
+var filterDefaults = {};
+
+/**
+ * Summary: Set dropdown filter defaults
+ * @param {Array}   filterOptions          List of filter options
+ */
+function setFilterDefaults(filterOptions) {
+  console.log(filterOptions);
+  filterOptions.forEach(
+    (filterOption) => (filterDefaults[filterOption] = filterOption)
+  );
+  console.log(filterDefaults);
+}
 
 /**
  * Summary: Reach out to Firestore and get all schedule entry data
@@ -39,10 +53,17 @@ async function getSchedule() {
 async function generateScheduleTable() {
   let schedule = await getSchedule();
   let table = document.querySelector("#scheduleTable");
+  // Find all distinct workout types
+  const uniqueWorkoutTypes = [
+    ...new Set(schedule.map((item) => item["Workout Type"])),
+  ];
+  // Set table dropdown filters
+  setFilterDefaults(uniqueWorkoutTypes);
   // Get the keys of the javascript schedule object
   //   let scheduleHeaders = Object.keys(schedule[0]);
   //   generateTableHead(table, scheduleHeaders);
   generateTableBody(table, schedule);
+  $("#scheduleTable").bootstrapTable();
   return table;
 }
 

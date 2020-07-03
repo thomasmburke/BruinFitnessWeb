@@ -20,12 +20,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css"
     />
-    <!-- may need to use below 4 as breaking changes were applied
+    <!-- bootstrap table filters-->
     <link
+      href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
-    -->
 
     <link href="../styles/style.css" rel="stylesheet" />
   </head>
@@ -104,10 +103,16 @@
             <table
               class="table text-center card-table shadow bg-white rounded"
               id="scheduleTable"
+              data-filter-control="true"
             >
               <thead>
                 <tr>
-                  <th class="rounded-left">
+                  <th
+                    class="rounded-left"
+                    data-field="classType"
+                    data-filter-control="select"
+                    data-filter-data="var:filterDefaults"
+                  >
                     Class Type
                   </th>
                   <th>
@@ -182,6 +187,9 @@
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
     <!-- JQuery Waypoints -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!--Bootstrap table filters-->
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     <!-- Utility funcitons -->
     <script src="/scripts/utils.js"></script>
     <script src="/scripts/schedule.js"></script>
