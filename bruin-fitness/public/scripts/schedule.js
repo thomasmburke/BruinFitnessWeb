@@ -4,17 +4,38 @@ var firestore = firebase.firestore();
 const docRef = firestore.doc(
   "schedules/San Leandro/schedule/LR7CLQA7fs5h07DAOpWb"
 );
+const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
-function getRealtimeUpdates() {
-  docRef.onSnapshot(function (doc) {
-    if (doc && doc.exists) {
-      const myData = doc.data();
-      console.log("data from firestore: " + myData.workoutType);
-    }
-  });
+async function getSchedule() {
+  let schedule = [];
+  try {
+    var querySnapshot = await scheduleRef.get();
+    querySnapshot.forEach(function (doc) {
+      let docData = doc.data();
+      let workoutType = docData.workoutType;
+      docData.scheduleTimes.forEach((scheduleEntry) =>
+        schedule.push({
+          workoutType: workoutType,
+          day: scheduleEntry.day,
+          time: scheduleEntry.time,
+        })
+      );
+    });
+    return schedule;
+  } catch (err) {
+    console.log("Error getting documents", err);
+  }
 }
 
-getRealtimeUpdates();
+async function generateScheduleTable() {
+  let schedule = await getSchedule();
+  let table = document.querySelector("table");
+  let scheduleHeaders = Object.keys(schedule[0]);
+  generateTableBody(table, schedule);
+  generateTableHead(table, scheduleHeaders);
+}
+
+generateScheduleTable();
 
 // DYNAMIC SCHEDULE TABLE CREATION
 
@@ -37,7 +58,7 @@ function generateTableHead(table, data) {
   }
 }
 
-function generateTable(table, data) {
+function generateTableBody(table, data) {
   for (let element of data) {
     let row = table.insertRow();
     for (let x in element) {
@@ -47,8 +68,3 @@ function generateTable(table, data) {
     }
   }
 }
-
-let table = document.querySelector("table");
-let data = Object.keys(mountains[0]);
-generateTable(table, mountains);
-generateTableHead(table, data);
