@@ -238,7 +238,7 @@ hr.light-100 {
   margin-bottom: 1rem;
 }
 
-/*============= PRICING PAGE =============*/
+/*============= PRICING PAGE START=============*/
 thead {
   background-color: #039509;
 }
@@ -256,6 +256,13 @@ thead tr th {
   color: white;
 }
 /*=========== END PRICING PAGE ===========*/
+
+/*============= SCHEDULE PAGE START=============*/
+#scheduleTable td {
+  font-size: 12px;
+  padding: 4px;
+}
+/*============= SCHEDULE PAGE END=============*/
 
 /*---Media Queries --*/
 
