@@ -265,6 +265,10 @@ thead tr th {
 #scheduleTable th {
   vertical-align: middle;
 }
+#scheduleTable select {
+  /* background-color: #039509; */
+  border: #037609;
+}
 /*============= SCHEDULE PAGE END=============*/
 
 /*---Media Queries --*/

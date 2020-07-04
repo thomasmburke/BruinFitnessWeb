@@ -20,6 +20,16 @@ function setFilterDefaults(filterOptions) {
 }
 
 /**
+ * Summary: Get unique values for a specific property in a list of objects
+ * @param {Array}   objList          List of objects to iterate through
+ * @param {String}   prop         name of the propery
+ * @return {Array}   List of unique values for a specific property in a list of objects
+ */
+function getDistinctPropertyValues(objList, prop) {
+  return [...new Set(objList.map((item) => item[prop]))];
+}
+
+/**
  * Summary: Reach out to Firestore and get all schedule entry data
  * @return {Object} Object containing multiple schedule entries
  */
@@ -54,15 +64,17 @@ async function generateScheduleTable() {
   let schedule = await getSchedule();
   let table = document.querySelector("#scheduleTable");
   // Find all distinct workout types
-  const uniqueWorkoutTypes = [
-    ...new Set(schedule.map((item) => item["Workout Type"])),
-  ];
+  const uniqueWorkoutTypes = getDistinctPropertyValues(
+    schedule,
+    "Workout Type"
+  );
   // Set table dropdown filters
   setFilterDefaults(uniqueWorkoutTypes);
   // Get the keys of the javascript schedule object
   //   let scheduleHeaders = Object.keys(schedule[0]);
   //   generateTableHead(table, scheduleHeaders);
   generateTableBody(table, schedule);
+  // Add Bootstrap filter
   $("#scheduleTable").bootstrapTable();
   return table;
 }
