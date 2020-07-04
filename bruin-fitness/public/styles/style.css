@@ -262,6 +262,9 @@ thead tr th {
   font-size: 12px;
   padding: 4px;
 }
+#scheduleTable th {
+  vertical-align: middle;
+}
 /*============= SCHEDULE PAGE END=============*/
 
 /*---Media Queries --*/
