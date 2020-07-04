@@ -2,7 +2,8 @@ TODO:
 - Add Location to footer
 - update URLs by either having the navbar do rewrites or updated folder structure of webpages
 - Schedule table should be ordered
-- Schedule table should be filterable by workout type
+- Schedule table: see if we can get shadows back -- not sure where those went..
+- Schedule should have a section that is specific to holiday our callouts
 
 Nice to have:
 - Leverage React
