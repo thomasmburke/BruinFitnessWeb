@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -7,10 +7,9 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pricing</title>
+    <title>Contact Us</title>
     <meta name="description" content="" />
     <meta name="keywords" content="CrossFit, gym, bruin fitness" />
-    <!-- bootstrap and fonts -->
     <!-- bootstrap and fonts -->
     <link
       rel="stylesheet"
@@ -21,14 +20,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css"
     />
-    <!-- may need to use below 4 as breaking changes were applied
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
-    />
-    -->
-
-    <link href="../styles/style.css" rel="stylesheet" />
+    <link href="/styles/style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -86,126 +78,16 @@
             <li class="nav-item">
               <a class="nav-link" href="/webpages/schedule.html">Schedule</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/webpages/pricing.html">Pricing</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/webpages/contact.html">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <!-- Max-width Container -->
-    <div class="wrapper pt-2">
-      <div class="os-animation" data-animation="animate__fadeInUp">
-        <!-- Heading 1 Title -->
-        <h1>Our Pricing</h1>
-      </div>
-      <!-- End Animation -->
-      <!-- Pricing Table -->
-      <div class="row justify-content-center pb-4">
-        <div class="col-12 col-sm-9 col-md-6 col-lg-6">
-          <div class="os-animation" data-animation="animate__fadeInUp">
-            <table
-              class="table text-center card-table shadow p-3 mb-5 bg-white rounded"
-            >
-              <thead>
-                <tr>
-                  <th colspan="2" class="rounded">Memberships</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Monthly Rate</th>
-                  <td>
-                    $200
-                    <span style="color: #ddd;">*</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>12 Month Contract Rate</th>
-                  <td>
-                    $170
-                    <span style="color: #ddd;">*</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>10 Class Pass</th>
-                  <td>$150</td>
-                </tr>
-                <tr>
-                  <th>Drop-In</th>
-                  <td>$20</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- End Animation -->
-        </div>
-        <!-- End Column -->
-        <div class="os-animation" data-animation="animate__fadeInUp">
-          <p style="padding-left: 2em; padding-right: 2em;">
-            * 20% off memberships for students, teachers, first responders, and
-            military
-          </p>
-        </div>
-        <!-- End Paragraph Animation -->
-      </div>
-      <!-- End Pricing Table -->
-      <!-- Callout Text & Button -->
-      <div class="os-animation" data-animation="animate__fadeInUp">
-        <div class="row mx-5 mb-5 callout-border text-center">
-          <div class="col-md-8 col-lg-9 my-auto pb-0 pb-md-2">
-            <h4>Would you like to learn more about our gym and classes?</h4>
-          </div>
-
-          <div class="col-md-4 col-lg-3 pb-2 pb-lg-1 py-1 vcenter">
-            <a class="btn btn-primary btn-md" href="#">Get In Touch</a>
-          </div>
-        </div>
-        <!-- End Callout Text & Button Row -->
-      </div>
-      <!-- End Animation -->
-    </div>
-    <!-- End Max-width Container -->
-
-    <!-- Drop in image overlay -->
-    <section class="dnow-regionsWrap">
-      <div class="dnow-regionsContent">
-        <div class="card bg-dark text-white">
-          <img src="/images/crossfit_banner_stock_image_slim.png" alt="" />
-          <div class="overlay-div"></div>
-          <div class="card-img-overlay d-flex align-items-center container">
-            <div class="row mb-5">
-              <div class="col-sm-12 text-content">
-                <div class="os-animation" data-animation="animate__rollIn">
-                  <h2 class="card-title">
-                    Dropping In?
-                  </h2>
-                </div>
-                <!--animation END-->
-                <div class="os-animation" data-animation="animate__fadeInUp">
-                  <p>
-                    Currently looking for a new place to workout? Or just in the
-                    area for a visit? We love having athletes come by from other
-                    gyms!
-                  </p>
-                  <p style="margin: 0px 0px;">
-                    To make sure you are as ready as possible on drop in day you
-                    can <a href="#">fill out your waiver</a> ahead of time. Make
-                    sure to stop by 15 minutes beforehand to stretch out and
-                    meet us.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Drop in image overlay END -->
 
     <!--- Footer -->
     <footer>
@@ -241,6 +123,16 @@
       </div>
     </footer>
 
+    <!-- update the version number as needed -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="/__/firebase/7.13.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.13.1/firebase-storage.js"></script>
+    <script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.13.1/firebase-performance.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script src="/__/firebase/init.js"></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper js -->
@@ -253,5 +145,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- Utility funcitons -->
     <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
   </body>
 </html>
