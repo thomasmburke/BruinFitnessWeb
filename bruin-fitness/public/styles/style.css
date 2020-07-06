@@ -24,10 +24,6 @@ other than navbar, carousel, banner & footer --*/
   overflow: hidden;
 }
 
-.thin-wrapper {
-  width: 50%;
-}
-
 /*-- Headings --*/
 h1 {
   text-align: center;
@@ -231,12 +227,6 @@ hr.light {
   margin-top: 0.8rem;
   margin-bottom: 1rem;
 }
-hr.light-100 {
-  border-top: 1px solid #d5d5d5;
-  width: 100%;
-  margin-top: 0.8rem;
-  margin-bottom: 1rem;
-}
 
 /*============= PRICING PAGE START=============*/
 thead {
@@ -268,6 +258,14 @@ thead tr th {
 #scheduleTable select {
   /* background-color: #039509; */
   border: #037609;
+}
+/*============= SCHEDULE PAGE END=============*/
+
+/*============= CONTACT PAGE START=============*/
+/* Add Border Radius & Shadow to Images --*/
+img.round {
+  border-radius: 5px;
+  box-shadow: 0 0 0.65rem rgba(0, 0, 0, 0.1);
 }
 /*============= SCHEDULE PAGE END=============*/
 
