@@ -89,24 +89,113 @@
       </div>
     </nav>
 
-    <!-- /images/crossfit_banner_stock_image_slim.png -->
+    <!-- Drop in image overlay -->
+    <section class="dnow-regionsWrap">
+      <div class="dnow-regionsContent">
+        <div class="card bg-dark text-white">
+          <img src="/images/crossfit_banner_stock_image_slim.png" alt="" />
+          <div class="overlay-div"></div>
+          <div
+            class="card-img-overlay d-flex align-items-center container justify-content-center"
+          >
+            <div class="row mb-5">
+              <div class="col-sm-12">
+                <div class="os-animation" data-animation="animate__fadeInUp">
+                  <h2 class="card-title">
+                    CONTACT US
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Drop in image overlay END -->
+
     <div class="wrapper">
-      <!-- Full Width Image -->
-      <div class="row">
-        <div class="col-12 mt-4">
-          <div class="os-animation" data-animation="animate__fadeInUp">
-            <img
-              class="round img-fluid"
-              src="/images/crossfit_banner_stock_image_slim.png"
-              alt=""
-            />
+      <!-- Two Column Contact Section -->
+      <div class="row m-4 justify-content-between">
+        <div class="col-md-5 text-left mt-lg-3">
+          <div class="os-animation" data-animation="animate__fadeInLeft">
+            <h1 class="text-left pb-2">
+              DROP US A LINE, ASK US QUESTIONS, HIT US UP. WE ARE HERE TO CHAT!
+            </h1>
+            <p>
+              Use the form to send us an email. We normally will respond back
+              within one business day or feel free to contact us via phone or
+              email.
+            </p>
+            <h2 class="text-left pb-2">SHOOT US A CALL</h2>
+            <p>
+              <strong>PHONE: </strong>(888) 555-5555<br /><strong
+                >EMAIL: </strong
+              >info@bruinfitness.com<br /><strong>LOCATION: </strong>100 Street
+              Name, Brookline, MA 02445
+            </p>
+          </div>
+          <!-- End Animation -->
+        </div>
+        <!-- End Column -->
+
+        <div class="col-md-7">
+          <div class="os-animation" data-animation="animate__fadeInRight">
+            <h4 class="text-left py-3">We'd be happy to hear from you!</h4>
+            <!-- Start Contact Form -->
+            <form id="contact-form" method="post" action="contact/contact.php">
+              <div class="messages"></div>
+              <!-- Start Controls -->
+              <div class="controls">
+                <div class="form-group">
+                  <input
+                    id="form_name"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter your name."
+                    required="required"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    id="form_email"
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter your email."
+                    required="required"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <textarea
+                    id="form_message"
+                    name="message"
+                    class="form-control"
+                    placeholder="Add your message."
+                    rows="4"
+                    required="required"
+                  ></textarea>
+                </div>
+
+                <input
+                  type="submit"
+                  class="btn btn-primary btn-md"
+                  value="Send message"
+                />
+              </div>
+              <!-- End Controls -->
+            </form>
+            <!-- End Contact Form -->
           </div>
           <!-- End Animation -->
         </div>
         <!-- End Column -->
       </div>
-      <!-- End Full Width Image Row -->
+      <!-- End Two Column Contact Section -->
     </div>
+    <!--End of wrapper-->
 
     <!--- Footer -->
     <footer>
