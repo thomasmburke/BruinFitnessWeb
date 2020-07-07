@@ -4,6 +4,8 @@ TODO:
 - Schedule table should be ordered
 - Schedule table: see if we can get shadows back -- not sure where those went..
 - Schedule should have a section that is specific to holiday our callouts
+- Contact page should have a map view of where the gym before the footer
+- Contact form should trigger a Firestore write
 
 Nice to have:
 - Leverage React
@@ -16,6 +18,7 @@ Additional web pages needed:
 
 Nice to have web pages / page sections:
 - Location (not entirely sure this is necessary)
+- Job Opportunities
 - News / Events
 - Blog
 - Shop apparel
