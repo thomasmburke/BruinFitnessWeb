@@ -16,3 +16,46 @@
  * https://www.google.com/settings/security/lesssecureapps
  * https://accounts.google.com/DisplayUnlockCaptcha
  */
+
+// Initialize Firestore
+var firestore = firebase.firestore();
+// Get a reference to the schedule collection of interest
+const mailRef = firestore.collection("mail");
+// Get a reference to the contact form
+const form = document.querySelector("#contact-form");
+
+form.addEventListener("submit", (e) => {
+  // Stops the page redirect
+  e.preventDefault();
+  // Write to Firestore mail collection
+  mailRef
+    .add({
+      to: "tburke@bu.edu",
+      message: {
+        subject: "A new customer is inquiring about the gym!",
+        text: `The following is the message from the user ${form.name.value} with email ${form.email.value}`,
+        html: `The following is the message from the user ${form.name.value} with email ${form.email.value}`,
+      },
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+});
+
+// function contactFormSubmission() {
+//   mailRef
+//     .add({
+//       name: "Tokyo",
+//       country: "Japan",
+//     })
+//     .then(function (docRef) {
+//       console.log("Document written with ID: ", docRef.id);
+//     })
+//     .catch(function (error) {
+//       console.error("Error adding document: ", error);
+//     });
+//   console.log("the form was successfully submitted!");
+// }
