@@ -33,8 +33,7 @@ form.addEventListener("submit", (e) => {
       to: "tburke@bu.edu",
       message: {
         subject: "A new customer is inquiring about the gym!",
-        text: `The following is the message from the user ${form.name.value} with email ${form.email.value}`,
-        html: `The following is the message from the user ${form.name.value} with email ${form.email.value}`,
+        html: `Please follow up on the potential customer inquiry documented below.<br /><strong>Website user: </strong>${form.name.value}<br /><strong>Email: </strong>${form.email.value}<br /><strong>Message: </strong>${form.message.value}`,
       },
     })
     .then(function (docRef) {
@@ -43,13 +42,31 @@ form.addEventListener("submit", (e) => {
     .catch(function (error) {
       console.error("Error adding document: ", error);
     });
+
+  // Inform the user that the message is sent
+  //Show Alert Message
+  document.querySelector(".alert").style.display = "block";
+
+  //Hide Alert Message After Seven Seconds
+  setTimeout(function () {
+    document.querySelector(".alert").style.display = "none";
+  }, 7000);
+
+  // Reset fields
+  form.reset();
+  // form.name.value = '';
+  // form.email.value = '';
+  // form.message.value = '';
 });
 
 // function contactFormSubmission() {
 //   mailRef
 //     .add({
-//       name: "Tokyo",
-//       country: "Japan",
+//       to: "tburke@bu.edu",
+//       message: {
+//         subject: "A new customer is inquiring about the gym!",
+//         html: `Please follow up on the potential customer inquiry documented below.<br /><strong>Website user: </strong>${form.name.value}<br /><strong>Email: </strong>${form.email.value}<br /><strong>Message: </strong>${form.message.value}`,
+//       },
 //     })
 //     .then(function (docRef) {
 //       console.log("Document written with ID: ", docRef.id);
@@ -57,5 +74,4 @@ form.addEventListener("submit", (e) => {
 //     .catch(function (error) {
 //       console.error("Error adding document: ", error);
 //     });
-//   console.log("the form was successfully submitted!");
 // }
