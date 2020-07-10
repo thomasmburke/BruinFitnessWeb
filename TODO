@@ -5,7 +5,6 @@ TODO:
 - Schedule table: see if we can get shadows back -- not sure where those went..
 - Schedule should have a section that is specific to holiday our callouts
 - Contact page should have a map view of where the gym before the footer
-- All buttons when pressed shouldn't turn blue, but rather a green? also looks like a blue border is added (get rid of that)
 - Need a way to rate limit the number of contact form submissions, potentially disable the submit button after a 3 submits?
     - Really should move rate limiting and DB write to Cloud Run for security and avoid cold start issues with GCF
 

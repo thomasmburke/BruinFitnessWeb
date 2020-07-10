@@ -138,10 +138,20 @@ p.lead {
   background-color: #039509;
   border: 1px solid #037609;
 }
-
+.btn-primary:visited {
+  background-color: #039509;
+  border: 1px solid #037609;
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem #03950875 !important;
+}
 .btn-primary:hover {
   background-color: #037609;
   border: 1px solid #037609;
+}
+.btn-primary:active {
+  background-color: #039509 !important;
+  border: 1px solid #037609 !important;
 }
 
 .jumbotron {
