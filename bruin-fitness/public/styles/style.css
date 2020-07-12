@@ -40,6 +40,9 @@ h4 {
 h5 {
   font-weight: 700;
 }
+p {
+  color: #4f4f4f;
+}
 
 /*============= TEAM PAGE START =============*/
 .card {

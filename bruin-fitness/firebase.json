@@ -15,6 +15,10 @@
         "destination": "/webpages/team.html"
       },
       {
+        "source": "/contact",
+        "destination": "/webpages/contact.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
