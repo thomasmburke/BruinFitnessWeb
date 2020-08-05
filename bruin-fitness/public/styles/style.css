@@ -174,9 +174,10 @@ p.lead {
   margin: 1rem;
 }
 
+/*============= SOCIAL STYLING START=============*/
 .social a {
-  font-size: 4.5em;
-  padding: 3rem;
+  font-size: 1em;
+  padding: 1rem;
 }
 
 .fa-facebook {
@@ -184,9 +185,6 @@ p.lead {
 }
 .fa-twitter {
   color: #00aced;
-}
-.fa-google-plus-g {
-  color: #dd4b39;
 }
 .fa-instagram {
   color: #517fa8;
@@ -197,11 +195,12 @@ p.lead {
 
 .fa-facebook:hover,
 .fa-twitter:hover,
-.fa-google-plus-g:hover,
 .fa-instagram:hover,
 .fa-youtube:hover {
   color: #d5d5d5;
 }
+/*============= SOCIAL STYLING END=============*/
+
 /* Footer CSS START */
 footer {
   background-color: #070707;
@@ -334,10 +333,6 @@ img.round {
 /* ============ desktop view .end// ============ */
 
 @media (max-width: 992px) {
-  .social a {
-    font-size: 4em;
-    padding: 2rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -358,10 +353,6 @@ img.round {
   }
   .display-4 {
     font-size: 200%;
-  }
-  .social a {
-    font-size: 2.5em;
-    padding: 1.2rem;
   }
   nav div.container-fluid {
     padding: 1rem 1rem 1rem 1rem !important;
@@ -394,10 +385,6 @@ img.round {
   }
   .display-4 {
     font-size: 160%;
-  }
-  .social a {
-    font-size: 2em;
-    padding: 0.7rem;
   }
   p {
     font-size: 14px;
