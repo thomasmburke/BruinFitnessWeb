@@ -2,8 +2,6 @@ import React from "react";
 import "./NavigationBar.css";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/NavBar";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
@@ -25,15 +23,15 @@ function NavigationBar() {
             <NavDropdown
               title="About"
               id="nav-dropdown"
-              renderMenuOnMount="true"
+              renderMenuOnMount={true}
             >
-              <NavDropdown.Item eventKey="4.1">About Us</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.2">Team</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.3">FAQ</NavDropdown.Item>
+              <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
+              <NavDropdown.Item href="/team">Team</NavDropdown.Item>
+              <NavDropdown.Item href="/FAQ">FAQ</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/schedule">Schedule</Nav.Link>
             <Nav.Link href="/pricing">Pricing</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link>Contact</Nav.Link>
           </Nav>
         </NavBar.Collapse>
       </Container>
