@@ -1,0 +1,61 @@
+/* default of Poppins font and secondary of sans-serif*/
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  font-weight: 400;
+}
+
+.navbar {
+  padding: unset;
+}
+/* add margin to each of the nav bar list items*/
+.nav-link {
+  font-size: 1.1em !important;
+  padding: 1.2rem;
+  margin-right: 20px;
+}
+
+/* ============ only desktop view ============ */
+@media all and (min-width: 768px) {
+  .navbar .nav-item .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    background-color: #f8f9fa;
+    margin-top: 0 !important;
+    border-radius: 0;
+    z-index: 1000;
+    top: 180%;
+  }
+  .navbar .nav-item:hover .dropdown-menu {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0deg);
+  }
+  .dropdown-item:hover {
+    color: #039509;
+  }
+  .dropdown-item:active {
+    background-color: #f8f9fa;
+  }
+}
+/* ============ desktop view .end// ============ */
+
+@media (max-width: 768px) {
+  nav div.container-fluid {
+    padding: 1rem 1rem 1rem 1rem !important;
+  }
+  .dropdown-item:hover {
+    color: #039509;
+    background-color: white;
+  }
+  a.nav-link {
+    padding: 1rem 0px 0px 0px;
+  }
+}
