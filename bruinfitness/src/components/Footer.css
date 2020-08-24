@@ -19,6 +19,7 @@ footer h6 {
   margin: 0px;
   padding: 0px 0px 13px;
   font-size: 13px;
+  font-weight: 700;
 }
 footer h5 {
   color: #ffffff;
@@ -34,10 +35,14 @@ hr.light {
   padding-bottom: 1rem;
 }
 
+/* COLUMNS WITH FLEX
+https://www.w3schools.com/css/tryit.asp?filename=trycss_mediaqueries_flex
+*/
 .flex-grid-fourths {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .flex-grid-fourths .col {
   flex: 1;
@@ -79,3 +84,9 @@ footer div.container-fluid {
   color: #d5d5d5;
 }
 /*============= SOCIAL STYLING END=============*/
+
+@media (max-width: 600px) {
+  .flex-grid-fourths {
+    flex-direction: column;
+  }
+}
