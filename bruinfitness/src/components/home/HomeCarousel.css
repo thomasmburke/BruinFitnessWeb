@@ -1,0 +1,59 @@
+.flex-grid-right {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  /* align flexbox right */
+  position: absolute;
+  right: 0;
+}
+.carousel-caption {
+  /* stupid bootstrap forces me to position the caption like this */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-30%);
+}
+.carousel-caption h3 {
+  font-size: 200%;
+  font-weight: 500;
+  text-shadow: 1px 1px 10px #000;
+}
+p {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .flex-grid-right {
+    width: 300px;
+    position: absolute;
+    /* move flexbox start to center then add a negative margin of half the box's size to center it */
+    left: 50%;
+    margin-left: -150px;
+    /* background-color: lightgreen; */
+  }
+  .carousel-caption h3 {
+    font-size: 140%;
+    font-weight: 400;
+  }
+  p {
+    font-size: 14px;
+  }
+  .carousel-caption {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  a.carousel-control-next,
+  a.carousel-control-prev,
+  .carousel-indicators,
+  .carousel-caption p {
+    display: none;
+  }
+}

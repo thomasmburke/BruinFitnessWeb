@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavigationBar from "./components/NavigationBar";
-import Footer from "./components/Footer";
+import NavigationBar from "./components/common/NavigationBar";
+import Footer from "./components/common/Footer";
+import Home from "./components/home/Home";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             </Route>
             {/* default route & Home page */}
             <Route path="/">
-              <h1>Home</h1>
+              <Home />
             </Route>
           </Switch>
         </div>

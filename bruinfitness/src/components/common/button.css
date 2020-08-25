@@ -1,0 +1,39 @@
+/*-- Buttons --*/
+.btn {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #039509;
+  border: 1px solid #037609;
+}
+.btn-primary:visited {
+  background-color: #039509;
+  border: 1px solid #037609;
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem #03950875 !important;
+}
+.btn-primary:hover {
+  background-color: #037609;
+  border: 1px solid #037609;
+}
+.btn-primary:active {
+  background-color: #039509 !important;
+  border: 1px solid #037609 !important;
+}
+
+@media (max-width: 768px) {
+  .carousel-caption .btn {
+    font-size: 95%;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-caption .btn {
+    font-size: 90%;
+    padding: 4px 8px;
+  }
+}

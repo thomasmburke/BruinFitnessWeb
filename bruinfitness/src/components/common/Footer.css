@@ -1,0 +1,92 @@
+.footer__copy {
+  padding: 0px;
+}
+footer {
+  background-color: #070707;
+  color: #4f4f4f;
+  padding-top: 1.5rem;
+}
+footer a {
+  color: #4f4f4f;
+}
+footer p {
+  padding: 0px 0px 7px;
+  font-size: 11.5px;
+  margin: 0px;
+}
+footer h6 {
+  color: #ffffff;
+  margin: 0px;
+  padding: 0px 0px 13px;
+  font-size: 13px;
+  font-weight: 700;
+}
+footer h5 {
+  color: #ffffff;
+  margin: 0px;
+}
+footer img {
+  padding-bottom: 0.8rem;
+}
+hr.light {
+  border-top: 1px solid #d5d5d5;
+  width: 75%;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
+/* COLUMNS WITH FLEX
+https://www.w3schools.com/css/tryit.asp?filename=trycss_mediaqueries_flex
+*/
+.flex-grid-fourths {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.flex-grid-fourths .col {
+  flex: 1;
+}
+
+.flex-grid-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer div.container-fluid {
+  padding-bottom: 2rem;
+}
+
+/*============= SOCIAL STYLING START=============*/
+.social a {
+  font-size: 1em;
+  padding: 1rem;
+}
+
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-twitter {
+  color: #00aced;
+}
+.fa-instagram {
+  color: #517fa8;
+}
+.fa-youtube {
+  color: #bb0000;
+}
+
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-instagram:hover,
+.fa-youtube:hover {
+  color: #d5d5d5;
+}
+/*============= SOCIAL STYLING END=============*/
+
+@media (max-width: 600px) {
+  .flex-grid-fourths {
+    flex-direction: column;
+  }
+}
