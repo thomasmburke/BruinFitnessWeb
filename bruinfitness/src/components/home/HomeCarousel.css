@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 400px;
-  /* align flexbox right */
+  text-align: right;
   position: absolute;
   right: 0;
 }
@@ -25,6 +25,7 @@ p {
   .flex-grid-right {
     width: 300px;
     position: absolute;
+    text-align: center;
     /* move flexbox start to center then add a negative margin of half the box's size to center it */
     left: 50%;
     margin-left: -150px;
@@ -33,9 +34,6 @@ p {
   .carousel-caption h3 {
     font-size: 140%;
     font-weight: 400;
-  }
-  p {
-    font-size: 14px;
   }
   .carousel-caption {
     position: absolute;
