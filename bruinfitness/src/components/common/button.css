@@ -24,10 +24,16 @@
   border: 1px solid #037609 !important;
 }
 
+.carousel-caption .btn {
+  padding: 8px 14px;
+  margin-right: 0.5em;
+}
+
 @media (max-width: 768px) {
   .carousel-caption .btn {
     font-size: 95%;
     padding: 8px 14px;
+    margin-right: 0.5em;
   }
 }
 
@@ -35,5 +41,6 @@
   .carousel-caption .btn {
     font-size: 90%;
     padding: 4px 8px;
+    margin-right: 0.5em;
   }
 }

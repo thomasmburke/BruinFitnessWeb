@@ -6,11 +6,31 @@
   position: absolute;
   right: 0;
 }
+
+.flex-grid-left {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  text-align: left;
+  position: absolute;
+  left: 0;
+}
+
+.flex-grid-center {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+}
+
 .carousel-caption {
   /* stupid bootstrap forces me to position the caption like this */
   position: absolute;
   top: 50%;
-  transform: translateY(-30%);
+  transform: translateY(-50%);
 }
 .carousel-caption h3 {
   font-size: 200%;
@@ -22,15 +42,17 @@ p {
 }
 
 @media (max-width: 768px) {
-  .flex-grid-right {
+  .flex-grid-right,
+  .flex-grid-left,
+  .flex-grid-center {
     width: 300px;
     position: absolute;
     text-align: center;
     /* move flexbox start to center then add a negative margin of half the box's size to center it */
     left: 50%;
     margin-left: -150px;
-    /* background-color: lightgreen; */
   }
+
   .carousel-caption h3 {
     font-size: 140%;
     font-weight: 400;
@@ -45,7 +67,7 @@ p {
 @media (max-width: 576px) {
   .carousel-caption {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
   }
   a.carousel-control-next,
