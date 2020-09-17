@@ -29,6 +29,10 @@
   margin-right: 0.5em;
 }
 
+.jumbotron .btn {
+  width: 132.94px;
+}
+
 @media (max-width: 768px) {
   .carousel-caption .btn {
     font-size: 95%;

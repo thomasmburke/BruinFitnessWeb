@@ -1,0 +1,32 @@
+.jumbotron {
+  padding: 1rem;
+  border-radius: 0;
+  margin: unset;
+}
+
+.flex-jumbotron {
+  display: flex;
+  /* Vertical alignment of flexbox items */
+  align-items: center;
+  padding: 1rem;
+}
+
+.flex-jumbotron .three-fourths-col {
+  flex: 4;
+  padding-right: 1rem;
+}
+
+.one-fourths-col {
+  flex: 1;
+  /* horizontal alignment of button */
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .flex-jumbotron {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+}

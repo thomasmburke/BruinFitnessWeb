@@ -1,3 +1,8 @@
+.carousel-caption p {
+  font-size: 1.1rem;
+  color: white;
+}
+
 .flex-grid-right {
   display: flex;
   flex-direction: column;
