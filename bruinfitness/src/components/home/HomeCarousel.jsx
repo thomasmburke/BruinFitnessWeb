@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./HomeCarousel.css";
 import "../common/button.css";
-// import ScrollAnimation from "react-animate-on-scroll";
 import fadeInLeft from "react-animations/lib/fade-in-left";
 import fadeInRight from "react-animations/lib/fade-in-right";
 import fadeInUp from "react-animations/lib/fade-in-up-big";
@@ -31,14 +30,6 @@ function HomeCarousel() {
           src="/images/crossfit_banner_stock_image.jpg"
           alt=""
         />
-
-        {/* <ScrollAnimation
-          animateIn="fadeIn"
-          delay={1000}
-          animateOnce={true}
-          // scrollableParentSelector="div.carousel-caption"
-          // animatePreScroll={true}
-        > */}
         <Carousel.Caption id="test-caption">
           <FadeInRightDiv>
             <div className="flex-grid-right">
@@ -55,8 +46,6 @@ function HomeCarousel() {
             </div>
           </FadeInRightDiv>
         </Carousel.Caption>
-
-        {/* </ScrollAnimation> */}
       </Carousel.Item>
       <Carousel.Item>
         <img
