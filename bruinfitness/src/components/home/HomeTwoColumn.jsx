@@ -20,7 +20,7 @@ function HomeTwoColumn() {
           laborum.
         </p>
         <br />
-        <a href="/contact" class="btn btn-primary">
+        <a href="/contact" className="btn btn-primary">
           Learn More
         </a>
       </div>
