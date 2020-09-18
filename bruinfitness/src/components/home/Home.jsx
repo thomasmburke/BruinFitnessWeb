@@ -1,13 +1,14 @@
 import React from "react";
 import HomeCarousel from "./HomeCarousel";
 import HomeJumbotron from "./HomeJumbotron";
+import HomeTwoColumn from "./HomeTwoColumn";
 
 function Home() {
   return (
     <React.Fragment>
-      <h1>Home</h1>
       <HomeCarousel />
       <HomeJumbotron />
+      <HomeTwoColumn />
     </React.Fragment>
   );
 }

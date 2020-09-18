@@ -1,0 +1,18 @@
+.flex-two-col {
+  display: flex;
+  align-items: center;
+}
+.flex-two-col .col {
+  flex: 1;
+}
+
+.text-col-padding {
+  padding-left: 2rem !important;
+}
+.image-col-padding {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+@media (max-width: 992px) {
+}
