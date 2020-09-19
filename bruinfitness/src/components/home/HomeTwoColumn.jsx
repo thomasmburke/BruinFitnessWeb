@@ -27,7 +27,7 @@ function HomeTwoColumn() {
           </a>
         </div>
         <div className="col  image-col-padding">
-          <img src="/images/hike.jpg" className="img-fluid" />
+          <img src="/images/hike.jpg" alt="" className="img-fluid" />
         </div>
       </div>
     </ScrollAnimation>

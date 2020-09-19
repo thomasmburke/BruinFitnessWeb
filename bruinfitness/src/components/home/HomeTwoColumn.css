@@ -23,4 +23,7 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
   }
+  .image-col-padding {
+    text-align: center;
+  }
 }
