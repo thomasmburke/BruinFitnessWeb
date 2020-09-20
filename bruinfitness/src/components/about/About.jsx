@@ -1,15 +1,16 @@
 import React from "react";
 import AboutGoalPreface from "./AboutGoalPreface";
 import AboutTwoColumn1 from "./AboutTwoColumn1";
+import AboutTwoColumn2 from "./AboutTwoColumn2";
 import "./About.css";
 
 function About() {
   return (
-    <React.Fragment>
+    <div className="wrapper">
       <AboutGoalPreface />
       <AboutTwoColumn1 />
-      {/* <AboutTwoColumn2 /> */}
-    </React.Fragment>
+      <AboutTwoColumn2 />
+    </div>
   );
 }
 

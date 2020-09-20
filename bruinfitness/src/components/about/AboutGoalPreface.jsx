@@ -10,7 +10,7 @@ const FadeInUpDiv = styled.div`
 
 function AboutGoalPreface() {
   return (
-    <div className="wrapper pt-3">
+    <div className="pt-3">
       <FadeInUpDiv>
         <div className="py-4">
           <h5>Our Goal:</h5>
