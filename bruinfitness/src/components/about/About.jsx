@@ -3,6 +3,7 @@ import AboutGoalPreface from "./AboutGoalPreface";
 import AboutTwoColumn1 from "./AboutTwoColumn1";
 import AboutTwoColumn2 from "./AboutTwoColumn2";
 import "./About.css";
+import CalloutText from "../common/CalloutText";
 
 function About() {
   return (
@@ -10,6 +11,7 @@ function About() {
       <AboutGoalPreface />
       <AboutTwoColumn1 />
       <AboutTwoColumn2 />
+      <CalloutText />
     </div>
   );
 }

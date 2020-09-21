@@ -1,0 +1,17 @@
+.callout-border {
+  border: 0.15rem solid #039509;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.callout-text {
+  margin: 0;
+  padding: 1rem;
+}
+
+.flex-callout-box {
+  display: flex;
+}
+
+.flex-callout-box .col {
+  flex: 1;
+}
