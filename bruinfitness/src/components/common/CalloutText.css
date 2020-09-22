@@ -10,8 +10,28 @@
 
 .flex-callout-box {
   display: flex;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
-.flex-callout-box .col {
+.flex-callout-box .col-text {
+  flex: 3;
+}
+.flex-callout-box .col-btn {
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .flex-callout-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
