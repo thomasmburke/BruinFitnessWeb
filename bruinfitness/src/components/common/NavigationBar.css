@@ -41,7 +41,8 @@ body {
   .dropdown-item:hover {
     color: #039509;
   }
-  .dropdown-item:active {
+  .dropdown-item:active,
+  .dropdown-item:visited {
     background-color: #f8f9fa;
   }
 }
