@@ -5,6 +5,7 @@ import NavigationBar from "./components/common/NavigationBar";
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
+import Schedule from "./components/schedule/Schedule";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
               <h1>Team</h1>
             </Route>
             <Route path="/schedule">
-              <h1>Schedule</h1>
+              <Schedule />
             </Route>
             <Route path="/pricing">
               <h1>Pricing</h1>
