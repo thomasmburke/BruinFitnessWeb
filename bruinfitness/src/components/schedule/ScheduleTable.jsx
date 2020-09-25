@@ -6,8 +6,16 @@ var firestore = firebase.firestore();
 // Get a reference to the schedule collection of interest
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
+let sampleData = [
+  { "Workout Type": "CrossFit", Day: "Thurs", Time: "2:00pm - 2:30pm" },
+  { "Workout Type": "Open Gym", Day: "Mon-Fri", Time: "4:00pm - 5:00pm" },
+  { "Workout Type": "Weightlifting", Day: "Fri", Time: "2:00pm - 2:30pm" },
+];
+// console.log(Object.keys(sampleData));
+
 function ScheduleTable() {
-  const [scheduleTable, setScheduleTable] = useState("");
+  const [scheduleData, setScheduleData] = useState(sampleData);
+  const headers = ["Workout Type", "Day", "Time"];
 
   // On function component mount lifecycle action
   useEffect(() => {
@@ -33,8 +41,7 @@ function ScheduleTable() {
           );
         });
         // return schedule;
-        console.log(schedule[0]["Day"]);
-        setScheduleTable(schedule[0]["Day"]);
+        setScheduleData(schedule);
       } catch (err) {
         console.log("Error getting documents", err);
       }
@@ -44,19 +51,59 @@ function ScheduleTable() {
 
   return (
     <div>
-      <h1>{scheduleTable}</h1>
+      <table className="table table-bordered table-hover">
+        <TableHeader headers={headers}></TableHeader>
+        <TableBody headers={headers} rows={scheduleData}></TableBody>
+      </table>
     </div>
   );
 }
 
+const TableHeader = (props) => {
+  const { headers } = props;
+  return (
+    <thead className="thead-dark" key="header-1">
+      <tr key="header-0">
+        {headers &&
+          headers.map((value, index) => {
+            return (
+              <th key={index}>
+                <div>{value}</div>
+              </th>
+            );
+          })}
+      </tr>
+    </thead>
+  );
+};
+
+const TableBody = (props) => {
+  const { headers, rows } = props;
+
+  function buildRow(row, headers) {
+    return (
+      <tr key={row["Workout Type"]}>
+        {headers.map((value, index) => {
+          return <td key={index}>{row[value]}</td>;
+        })}
+      </tr>
+    );
+  }
+
+  return (
+    <tbody>
+      {rows &&
+        rows.map((value) => {
+          return buildRow(value, headers);
+        })}
+    </tbody>
+  );
+};
+
 export default ScheduleTable;
 
-//   useEffect(
-//     () =>
-//       getSchedule().then((schedule) =>
-//         setScheduleTable(() => schedule[0]["Day"])
-//       ),
-//     []
-//   );
-
+// How I avoided react hook warnings, says I may need to use suspense in the future
 // https://stackoverflow.com/a/53572588/9586164
+
+// How to create a dynamic bootstrap table with react hooks!
+// https://dev.to/abodero/creating-a-dynamic-table-using-bootstrap-4-and-react-hooks-4a1m
