@@ -1,10 +1,12 @@
 import React from "react";
 import ScheduleTable from "./ScheduleTable";
+import CalloutText from "../common/CalloutText";
 
 function Schedule() {
   return (
-    <div>
+    <div className="wrapper">
       <ScheduleTable />
+      <CalloutText />
     </div>
   );
 }

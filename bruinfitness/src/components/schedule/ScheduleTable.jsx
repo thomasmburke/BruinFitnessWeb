@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
+import "./ScheduleTable.css";
 
 // Initialize Firestore
 var firestore = firebase.firestore();
 // Get a reference to the schedule collection of interest
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
-let sampleData = [
-  { "Workout Type": "CrossFit", Day: "Thurs", Time: "2:00pm - 2:30pm" },
-  { "Workout Type": "Open Gym", Day: "Mon-Fri", Time: "4:00pm - 5:00pm" },
-  { "Workout Type": "Weightlifting", Day: "Fri", Time: "2:00pm - 2:30pm" },
-];
-// console.log(Object.keys(sampleData));
+// let sampleData = [
+//   { "Workout Type": "CrossFit", Day: "Thurs", Time: "2:00pm - 2:30pm" },
+//   { "Workout Type": "Open Gym", Day: "Mon-Fri", Time: "4:00pm - 5:00pm" },
+//   { "Workout Type": "Weightlifting", Day: "Fri", Time: "2:00pm - 2:30pm" },
+// ];
 
 function ScheduleTable() {
   const [scheduleData, setScheduleData] = useState(null);
@@ -84,7 +84,8 @@ const TableBody = (props) => {
 
   function buildRow(row, headers) {
     return (
-      <tr key={row["Workout Type"]}>
+      // Wonky way of creating a unique key per row, but works for now
+      <tr key={row["Workout Type"] + row["Day"] + row["Time"]}>
         {headers.map((value, index) => {
           return <td key={index}>{row[value]}</td>;
         })}
