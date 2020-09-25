@@ -14,7 +14,7 @@ let sampleData = [
 // console.log(Object.keys(sampleData));
 
 function ScheduleTable() {
-  const [scheduleData, setScheduleData] = useState(sampleData);
+  const [scheduleData, setScheduleData] = useState(null);
   const headers = ["Workout Type", "Day", "Time"];
 
   // On function component mount lifecycle action
@@ -79,6 +79,8 @@ const TableHeader = (props) => {
 
 const TableBody = (props) => {
   const { headers, rows } = props;
+  const columns = headers ? headers.length : 0;
+  const showSpinner = rows === null;
 
   function buildRow(row, headers) {
     return (
@@ -92,7 +94,17 @@ const TableBody = (props) => {
 
   return (
     <tbody>
-      {rows &&
+      {showSpinner && (
+        <tr key="spinner-0">
+          <td colSpan={columns} className="text-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </td>
+        </tr>
+      )}
+      {!showSpinner &&
+        rows &&
         rows.map((value) => {
           return buildRow(value, headers);
         })}
