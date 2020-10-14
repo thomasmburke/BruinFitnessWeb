@@ -1,0 +1,23 @@
+.datepicker-div {
+  text-align: center;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  font-size: 80px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+  color: #444;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #e3b924;
+}
+
+.react-datepicker__input-container input:focus,
+.react-datepicker__input-container input:visited,
+.react-datepicker__input-container input:active {
+  outline: none;
+}
