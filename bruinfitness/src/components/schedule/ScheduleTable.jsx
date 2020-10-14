@@ -50,8 +50,8 @@ function ScheduleTable() {
   }, []);
 
   return (
-    <div>
-      <table className="table table-bordered table-hover">
+    <div className="table-wrapper-scroll-y my-custom-scrollbar">
+      <table className="table table-bordered table-hover table-sm">
         <TableHeader headers={headers}></TableHeader>
         <TableBody headers={headers} rows={scheduleData}></TableBody>
       </table>
