@@ -13,7 +13,7 @@
   text-align: center;
   border: none;
   background-color: transparent;
-  border-bottom: 2px solid #e3b924;
+  border-bottom: 1px solid #039509;
 }
 
 .react-datepicker__input-container input:focus,

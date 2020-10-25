@@ -21,6 +21,7 @@ function ScheduleDatePicker() {
         minDate={oneWeekBack}
         maxDate={oneWeekForward}
         closeOnScroll={true}
+        // placeholderText="Placeholder Text 🗓️"
         // className="text-center"
         // excludeDates={[new Date(), subDays(new Date(), 1)]}
       />
