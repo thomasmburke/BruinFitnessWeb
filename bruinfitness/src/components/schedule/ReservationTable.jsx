@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
+import { MyContext } from "../../providers/MyProvider";
 
 function ReservationTable() {
-    const [scheduleDate, setScheduleDate] = useState("10/24");
+    const context = useContext(MyContext)
+    // const [scheduleDate, setScheduleDate] = useState("10/24");
     return (
-        <div>
+        <h1>{context.state.scheduleDate} Schedule</h1>
+    )
+}
+
+export default ReservationTable
+
+{/* <div>
             <table className="table table-bordered table-hover table-sm">
                 <thead>
     <tr>
@@ -16,8 +24,12 @@ function ReservationTable() {
     </tr>
   </thead>
             </table>
-        </div>
-    )
-}
+        </div> */}
 
-export default ReservationTable
+
+
+{/* <MyContext.Consumer>
+            {(context) =>(
+                <h1>Inside Consumer {context.state.scheduleDate}</h1>
+            )}
+        </MyContext.Consumer> */}

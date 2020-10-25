@@ -51,6 +51,7 @@ function ScheduleTable() {
 
   return (
     <div className="table-wrapper-scroll-y my-custom-scrollbar">
+        {/* table-sm makes all table cells small */}
       <table className="table table-bordered table-hover table-sm">
         <TableHeader headers={headers}></TableHeader>
         <TableBody headers={headers} rows={scheduleData}></TableBody>
