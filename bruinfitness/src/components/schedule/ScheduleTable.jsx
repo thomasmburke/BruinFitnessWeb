@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../../firebase";
+// import firebase from "../../firebase";
+import { firestore } from "../../firebase";
 import "./ScheduleTable.css";
 
 // Initialize Firestore
-var firestore = firebase.firestore();
+// var firestore = firebase.firestore();
 // Get a reference to the schedule collection of interest
 const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
 
