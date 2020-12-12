@@ -48,7 +48,7 @@ function ReservationTable() {
             <table className="table table-bordered table-hover table-sm">
                 <thead className="thead-dark">
                     <tr>
-                    <th colspan="3">{context.state.scheduleDate} Schedule</th>
+                    <th colSpan="3">{context.state.scheduleDate} Schedule</th>
                     </tr>
                 </thead>
                 <TableBody headers={headers} rows={reservationData}></TableBody>
@@ -67,7 +67,12 @@ const TableBody = (props) => {
       // Wonky way of creating a unique key per row, but works for now
       <tr key={row["Workout Type"] + row["Time"]}>
         {headers.map((value, index) => {
-            return <td key={index}>{row[value]}</td>;
+            return <td key={index}>
+                {row[value]}
+                {value === "Workout Type" &&
+                    (<div><button className="btn btn-primary btn-sm">Reserve</button>5 of 12 reserved</div>)
+                }
+            </td>;
         })}
       </tr>
     );
@@ -94,9 +99,3 @@ const TableBody = (props) => {
 };
 
 export default ReservationTable
-
-{/* <MyContext.Consumer>
-            {(context) =>(
-                <h1>Inside Consumer {context.state.scheduleDate}</h1>
-            )}
-        </MyContext.Consumer> */}
