@@ -1,1 +1,2 @@
 - make navbar navlinks active when currently being used
+- make the reservation upper limit a Firestore document instead of being hardcoded

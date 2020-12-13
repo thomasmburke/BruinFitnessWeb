@@ -31,6 +31,7 @@ function ReservationTable() {
             schedule.push({
               "Workout Type": workoutType,
               Time: scheduleEntry.time,
+              "reservationCnt": scheduleEntry.reservationCnt
             })
           );
         });
@@ -49,7 +50,7 @@ function ReservationTable() {
             <table className="table table-bordered table-hover table-sm">
                 <thead className="thead-dark">
                     <tr>
-                    <th colSpan="3">{context.state.scheduleDate} Schedule</th>
+                    <th colSpan="3">{context.state.scheduleDate} Classes</th>
                     </tr>
                 </thead>
                 <TableBody headers={headers} rows={reservationData}></TableBody>
@@ -76,11 +77,20 @@ const TableBody = (props) => {
                                     <div className="col-md-9 vcenter">
                                         {row[value]}
                                     </div>
-                                        <div className="col-md-3">
-                                            <button className="btn btn-primary btn-sm">Reserve</button>
-                                            <br />
-                                            <small>5 of 12 reserved</small>
-                                        </div>
+                                    {row["reservationCnt"] < 12 ?
+                                        (
+                                            <div className="col-md-3">
+                                                <button className="btn btn-primary btn-sm">Reserve</button>
+                                                <br />
+                                                <small>{row["reservationCnt"]} of 12 reserved</small>
+                                            </div>
+                                        ) : (
+                                            <div className="col-md-3">
+                                                Class Full
+                                            </div>
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         )}

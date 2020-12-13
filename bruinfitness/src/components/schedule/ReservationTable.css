@@ -7,4 +7,5 @@
 /* bootstrap uses flexbox so need to use align-items to vertically center */
 div.row {
   align-items: center;
+  text-align: center;
 }
