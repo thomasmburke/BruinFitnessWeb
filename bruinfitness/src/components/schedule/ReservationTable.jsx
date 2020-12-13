@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { MyContext } from "../../providers/MyProvider";
 import { firestore } from "../../firebase";
+import "./ReservationTable.css";
 
 // Get a reference to the schedule collection of interest
 const reservationRef = firestore.collection("schedules/San Leandro/schedule");
@@ -68,10 +69,27 @@ const TableBody = (props) => {
       <tr key={row["Workout Type"] + row["Time"]}>
         {headers.map((value, index) => {
             return <td key={index}>
-                {row[value]}
                 {value === "Workout Type" &&
-                    (<div><button className="btn btn-primary btn-sm">Reserve</button>5 of 12 reserved</div>)
-                }
+                        (
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-md-9 vcenter">
+                                        {row[value]}
+                                    </div>
+                                        <div className="col-md-3">
+                                            <button className="btn btn-primary btn-sm">Reserve</button>
+                                            <br />
+                                            <small>5 of 12 reserved</small>
+                                        </div>
+                                </div>
+                            </div>
+                        )}
+                {value !== "Workout Type"&&
+                    (
+                        <React.Fragment>
+                        {row[value]}
+                        </React.Fragment>
+                    )}
             </td>;
         })}
       </tr>
@@ -99,3 +117,14 @@ const TableBody = (props) => {
 };
 
 export default ReservationTable
+
+
+
+
+
+{/* <div className="tableRow">
+                    {row[value]}
+                    {value === "Workout Type" &&
+                        (<div><button className="btn btn-primary btn-sm">Reserve</button>5 of 12 reserved</div>)
+                    }
+                </div> */}

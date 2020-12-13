@@ -1,0 +1,10 @@
+/* center table elements vertically and horizontally */
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* bootstrap uses flexbox so need to use align-items to vertically center */
+div.row {
+  align-items: center;
+}
