@@ -1,2 +1,11 @@
 - make navbar navlinks active when currently being used
 - make the reservation upper limit a Firestore document instead of being hardcoded
+
+Data Model:
+- when adding workouts for the week the fitness programmer will select the day in the UI
+they will then write out all the workout details this will get written to the workouts collection
+under that day
+- fitness programmer will also be responsible for adding the classes for the week.
+They will check checkboxes to add the ones that are needed for the week. (or should be removed)
+by default certain check boxes will be enabled, but the programmer can add additional classes for a week and remove others
+
