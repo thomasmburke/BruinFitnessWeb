@@ -17,30 +17,34 @@ function ReservationTable() {
      * Summary: Reach out to Firestore and get all schedule/reservation entry data
      * @return {Object} Object containing multiple schedule entries
      */
-        getReservationData();
+        var unsubscribe = getReservationData();
+        // remember to unsubscribe from your realtime listener on unmount or you will create a memory leak. Why did we return a function from our effect? This is the optional cleanup mechanism for effects.
+       return () => unsubscribe();
     }, []);
 
-    async function getReservationData() {
-      // reservation data will be a list of objects containing the time, workoutType, reservationCnt, etc...
-        let reservationData = [];
-        try {
-            var querySnapshot = await reservationRef.get();
-            // querySnapshot holds multiple documents, we need to unpack all of them
-            querySnapshot.forEach(function (doc) {
-            let docData = doc.data();
-            // for each document extract reservationData
-            reservationData.push({
-                "Workout Type": docData.workoutType,
-                id: doc.id,
-                "reservationCnt": docData.reservationCnt,
-                Time: docData.time
-            })
-            });
-            // set component's state variable to something that is not null
-            setReservationData(reservationData);
-        } catch (err) {
-            console.log("Error getting documents", err);
-        }
+     // code to getSchedule using a firestore listener
+    function getReservationData() {
+        // if using a listener you will also need to detach the listener
+      try {
+        var unsubscribe = reservationRef.onSnapshot(function(querySnapshot) {
+            let reservationData = [];
+             // querySnapshot holds multiple documents, we need to unpack all of them
+        querySnapshot.forEach(function (doc) {
+          let docData = doc.data();
+          // for each workout listed in the firestore document create a schedule entry
+        reservationData.push({
+            "Workout Type": docData.workoutType,
+            id: doc.id,
+            "reservationCnt": docData.reservationCnt,
+            Time: docData.time
+        })
+        });
+        setReservationData(reservationData);
+        });
+        return unsubscribe;
+      } catch (err) {
+        console.log("Error getting documents", err);
+      }
     }
 
     function incrementReservation(docId){
@@ -64,15 +68,6 @@ function ReservationTable() {
                 reservationCnt++;
                 transaction.update(docRef, { reservationCnt: reservationCnt });
             }
-            // update the local state (reservationData) with the number of users reserved
-            for (var i = 0, l = reservationData.length; i < l; i++) {
-                    if (reservationData[i]["id"] === docId){
-                        const newReservationData= [...reservationData];
-                        newReservationData[i]["reservationCnt"] = reservationCnt;
-                        console.log(`reservationCnt --> ${reservationCnt}`)
-                        setReservationData(newReservationData);
-                    }
-                }
         });
     }).then(function() {
         console.log("Transaction successfully committed!");
