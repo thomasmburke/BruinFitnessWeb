@@ -119,6 +119,7 @@ const TableBody = ({
     // If the user has reserved a spot in the class
     if (row["reservedUsers"].includes(testUser)) {
       // If they are in the class we need to allow them to leave the class if they can't make it
+      // TODO: The color of the "Leave Class" button should be a different color
       return (
         <div className="col-md-3">
           <button
@@ -128,7 +129,11 @@ const TableBody = ({
             Leave Class
           </button>
           <br />
-          <small>{row["reservationCnt"]} of 12 reserved</small>
+          {row["reservationCnt"] < 12 ? (
+            <small>{row["reservationCnt"]} of 12 reserved</small>
+          ) : (
+            <small>Class Full</small>
+          )}
         </div>
       );
     }
