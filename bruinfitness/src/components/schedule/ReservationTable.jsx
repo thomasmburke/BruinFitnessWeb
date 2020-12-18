@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { MyContext } from "../../providers/MyProvider";
 import { firestore } from "../../firebase";
 import "./ReservationTable.css";
+import * as firebase from "firebase/app";
 
 // Get a reference to the schedule collection of interest
 // TODO: This should get today's date and use that in the collection path
@@ -26,25 +27,33 @@ function ReservationTable() {
   }, []);
 
   // code to getSchedule using a firestore listener
+  // TODO: may want to move this to its own file: https://stackoverflow.com/a/60029676/9586164
   function getReservationData() {
     // if using a listener you will also need to detach the listener
     try {
-      var unsubscribe = reservationRef.onSnapshot(function (querySnapshot) {
-        let reservationData = [];
-        // querySnapshot holds multiple documents, we need to unpack all of them
-        querySnapshot.forEach(function (doc) {
-          let docData = doc.data();
-          // for each workout listed in the firestore document create a schedule entry
-          reservationData.push({
-            "Workout Type": docData.workoutType,
-            id: doc.id,
-            reservationCnt: docData.reservationCnt,
-            Time: docData.time,
-            reservedUsers: docData.reservedUsers,
+      var unsubscribe = reservationRef.onSnapshot(
+        function (querySnapshot) {
+          let reservationData = [];
+          // querySnapshot holds multiple documents, we need to unpack all of them
+          querySnapshot.forEach(function (doc) {
+            let docData = doc.data();
+            // for each workout listed in the firestore document create a schedule entry
+            reservationData.push({
+              "Workout Type": docData.workoutType,
+              id: doc.id,
+              reservationCnt: docData.reservationCnt,
+              Time: docData.time,
+              reservedUsers: docData.reservedUsers,
+            });
           });
-        });
-        setReservationData(reservationData);
-      });
+          setReservationData(reservationData);
+        },
+        function (error) {
+          console.log(
+            `ReservationTable Listener encountered an error: ${error}`
+          );
+        }
+      );
       return unsubscribe;
     } catch (err) {
       console.log("Error getting documents", err);
@@ -53,11 +62,22 @@ function ReservationTable() {
 
   function removeReservation(row) {
     console.log(`removing reservation for ${testUser}`);
+    let docRef = reservationRef.doc(row["id"]);
+    const decrement = firebase.firestore.FieldValue.increment(-1);
+    const removeUser = firebase.firestore.FieldValue.arrayRemove(testUser);
+    // Atomically remove a user from the "reservedUsers" array field.
+    // Atomically decrement the reservationCnt of the class by 1.
+    docRef.update({
+      reservedUsers: removeUser,
+      reservationCnt: decrement,
+    });
   }
 
   function incrementReservation(docId) {
     //   get a reference to the doc being updated
     let docRef = reservationRef.doc(docId);
+    const increment = firebase.firestore.FieldValue.increment(1);
+    const addUser = firebase.firestore.FieldValue.arrayUnion(testUser);
     // using a transaction to ensure we don't exceed the max number of reservations
     return firestore
       .runTransaction(function (transaction) {
@@ -67,15 +87,17 @@ function ReservationTable() {
             throw "Document does not exist!";
           }
           // Get the current reservation count
-          let reservationCnt = reservationDoc.data().reservationCnt;
-          if (reservationCnt >= 12) {
+          if (reservationDoc.data().reservationCnt >= 12) {
             //TODO: should likely put a toast or alert that they were unable to register for the class
             console.log("sorry class is full!");
           } else {
             // if there is still space left in the class then add the user and increment the count
-            //TODO: add the user's id to the list of reserved users
-            reservationCnt++;
-            transaction.update(docRef, { reservationCnt: reservationCnt });
+            // Atomically add a user to the "reservedUsers" array field.
+            // Atomically increment the reservationCnt of the class by 1.
+            transaction.update(docRef, {
+              reservationCnt: increment,
+              reservedUsers: addUser,
+            });
           }
         });
       })
@@ -88,7 +110,7 @@ function ReservationTable() {
   }
 
   return (
-    <div>
+    <div className="table-wrapper-scroll-y reservation-table-scrollbar">
       <table className="table table-bordered table-hover table-sm">
         <thead className="thead-dark">
           <tr>
