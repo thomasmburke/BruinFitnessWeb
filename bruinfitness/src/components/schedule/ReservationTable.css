@@ -7,5 +7,15 @@
 /* bootstrap uses flexbox so need to use align-items to vertically center */
 div.row {
   align-items: center;
-  text-align: center;
+}
+
+.reservation-table-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.table-wrapper-scroll-y {
+  display: block;
 }
