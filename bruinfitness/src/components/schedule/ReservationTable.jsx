@@ -145,7 +145,7 @@ const TableBody = ({
       return (
         <div className="col-md-3">
           <button
-            className="btn btn-primary btn-sm"
+            className="btn btn-secondary btn-sm"
             onClick={() => removeReservation(row)}
           >
             Leave Class
