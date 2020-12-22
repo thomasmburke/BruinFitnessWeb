@@ -15,6 +15,10 @@ function ReservationTable() {
   const context = useContext(MyContext);
   const [reservationData, setReservationData] = useState(null);
   const headers = ["Time", "Workout Type"];
+  const reservationsRef = firestore.collection(
+    `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
+  );
+
   // On function component mount lifecycle action
   useEffect(() => {
     /**
@@ -141,7 +145,6 @@ const TableBody = ({
     // If the user has reserved a spot in the class
     if (row["reservedUsers"].includes(testUser)) {
       // If they are in the class we need to allow them to leave the class if they can't make it
-      // TODO: The color of the "Leave Class" button should be a different color
       return (
         <div className="col-md-3">
           <button

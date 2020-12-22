@@ -5,12 +5,15 @@ import "./ScheduleDatePicker.css";
 import { MyContext } from "../../providers/MyProvider";
 
 function ScheduleDatePicker() {
-  const context = useContext(MyContext)
+  const context = useContext(MyContext);
   const [date, setDate] = useState(new Date());
   const handleChange = (date) => {
+    // Change the date displayed in the UI
     context.changeDate(date);
+    //Change the date for the Firestore collection ref
+    context.changeFirestoreDate(date);
     setDate(date);
-};
+  };
 
   let oneWeekBack = new Date();
   let oneWeekForward = new Date();
@@ -19,30 +22,34 @@ function ScheduleDatePicker() {
 
   return (
     <div className="datepicker-div">
-        <DatePicker
-          selected={date}
-          onChange={handleChange}
-          dateFormat="MMMM d, yyyy"
-          minDate={oneWeekBack}
-          maxDate={oneWeekForward}
-          closeOnScroll={true}
-          // placeholderText="Placeholder Text 🗓️"
-          // className="text-center"
-          // excludeDates={[new Date(), subDays(new Date(), 1)]}
-        />
+      <DatePicker
+        selected={date}
+        onChange={handleChange}
+        dateFormat="MMMM d, yyyy"
+        minDate={oneWeekBack}
+        maxDate={oneWeekForward}
+        closeOnScroll={true}
+        // placeholderText="Placeholder Text 🗓️"
+        // className="text-center"
+        // excludeDates={[new Date(), subDays(new Date(), 1)]}
+      />
     </div>
   );
 }
 
 export default ScheduleDatePicker;
 
-{/* <MyContext.Consumer>
+{
+  /* <MyContext.Consumer>
             {(context) =>(
               <button onClick={context.changeDate}>Change the date!</button>
             )}
-        </MyContext.Consumer> */}
+        </MyContext.Consumer> */
+}
 
-{/* <MyContext.Consumer>
+{
+  /* <MyContext.Consumer>
         {(context) =>(
 )}
-      </MyContext.Consumer> */}
+      </MyContext.Consumer> */
+}
