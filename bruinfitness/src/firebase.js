@@ -1,5 +1,4 @@
-// import * as firebase from "firebase";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/firestore";
 
 var config = {

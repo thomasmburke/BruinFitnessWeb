@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import { MyContext } from "../../providers/MyProvider";
 import { firestore } from "../../firebase";
 import "./ReservationTable.css";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 
 // Get a reference to the schedule collection of interest
-// TODO: This should get today's date and use that in the collection path
+// TODO: remove this and replace with the reservationsRef in the ReservationTable component
 const reservationRef = firestore.collection(
   "schedules/Redwood City/dates/2020_12_13/classes"
 );
