@@ -68,7 +68,7 @@ function ReservationTable() {
         // This code may get re-run multiple times (max 5 times) if there are conflicts.
         return transaction.get(docRef).then(function (reservationDoc) {
           if (!reservationDoc.exists) {
-            throw "Document does not exist!";
+            throw new Error("Document does not exist!");
           }
           // Get the current reservation count
           // TODO: The MAX reservationCnt should come from Firestore as well
