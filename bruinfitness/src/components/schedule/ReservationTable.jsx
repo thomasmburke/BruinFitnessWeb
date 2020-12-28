@@ -34,7 +34,8 @@ function ReservationTable() {
   function removeReservation(row) {
     /*
     Summary: Atomically decrements the reservationCnt and removes the signed in user from the class
-    @param {Object} row 
+    @param {Object} row Firestore document data pertaining to a class w/ reservation data.
+    @return {} null
     */
     // TODO: remove debug logging
     console.log(`removing reservation for ${testUser}`);
@@ -53,26 +54,31 @@ function ReservationTable() {
   function incrementReservation(docId) {
     /*
     Summary: Attempts a transaction to add a user and increment the reservationCnt of a class
-    @param {string} docId
+    @param {string} docId Firestore document id of class being incremented.
+    @return {Promise<T>} 
     */
-    //   get a reference to the doc being updated
+    // Get a reference to the class doc being updated
     let docRef = reservationRef.doc(docId);
     const increment = firebase.firestore.FieldValue.increment(1);
     const addUser = firebase.firestore.FieldValue.arrayUnion(testUser);
     // using a transaction to ensure we don't exceed the max number of reservations
+    // Optional TODO: this transaction may be able to be replaced by clever security rule usage
     return firestore
       .runTransaction(function (transaction) {
-        // This code may get re-run multiple times if there are conflicts.
+        // This code may get re-run multiple times (max 5 times) if there are conflicts.
         return transaction.get(docRef).then(function (reservationDoc) {
           if (!reservationDoc.exists) {
             throw "Document does not exist!";
           }
           // Get the current reservation count
+          // TODO: The MAX reservationCnt should come from Firestore as well
           if (reservationDoc.data().reservationCnt >= 12) {
-            //TODO: should likely put a toast or alert that they were unable to register for the class
-            console.log("sorry class is full!");
+            // If the class is full, we need to alert the user that their reservation attempt was unsuccessful
+            // TODO: Would like to test this particular code path so see how the transaction 
+            // responds when I don't perform the transaction.update()
+            alert("Sorry the class is now full. Please try reserving a different time slot");
           } else {
-            // if there is still space left in the class then add the user and increment the count
+            // If there is still space left in the class then add the user and increment the count
             // Atomically add a user to the "reservedUsers" array field.
             // Atomically increment the reservationCnt of the class by 1.
             transaction.update(docRef, {
@@ -83,6 +89,7 @@ function ReservationTable() {
         });
       })
       .then(function () {
+        // TODO: Not sure if I need the then() statement here as I'm not actually doing anything when the promise resolves
         console.log("Transaction successfully committed!");
       })
       .catch(function (error) {
@@ -120,10 +127,17 @@ const TableBody = ({
   incrementReservation,
   removeReservation,
 }) => {
+  // Dynamically determine how many columns are needed by looking at the list of headers
   const columns = headers ? headers.length : 0;
+  // While we wait for the database to provide the required data this will control a spinner being displayed as we wait
   const showSpinner = reservationData === null;
 
   function buildReservationButton(row) {
+    /*
+    Summary: Responsible for building the reservation button and handling the different UI, given state passed to it in the `row`
+    @param {Object} row Firestore document data pertaining to a class w/ reservation data.
+    @return {Object} HTML to be rendered. Specifically the reservation button placed in the table body's column 
+    */
     // If the user has reserved a spot in the class
     if (row["reservedUsers"].includes(testUser)) {
       // If they are in the class we need to allow them to leave the class if they can't make it
@@ -170,6 +184,12 @@ const TableBody = ({
   }
 
   function buildRow(row, headers) {
+    /*
+    Summary: Responsible for building individual table rows given a Firestore document representing a class
+    @param: {Object} row Firestore document data pertaining to a class w/ reservation data.
+    @param: {Array} headers List of all the column headers for the reservation table.
+    @return {Object} HTML to be rendered. Specifically a full HTML table row w/ reservation data.
+    */
     return (
       // Wonky way of creating a unique key per row, but works for now
       <tr key={row["workoutType"] + row["time"]}>
