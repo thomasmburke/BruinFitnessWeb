@@ -1,71 +1,44 @@
-import React, { useState, useContext, useEffect } from "react";
-import { MyContext } from "../../providers/MyProvider";
-import { firestore } from "../../firebase";
-import "./ReservationTable.css";
 import firebase from "firebase/app";
+import React, { useContext } from "react";
+import { useFirestore, useFirestoreCollectionData } from "reactfire";
+import { MyContext } from "../../providers/MyProvider";
+import "./ReservationTable.css";
 
-// Get a reference to the schedule collection of interest
-// TODO: remove this and replace with the reservationsRef in the ReservationTable component
-const reservationRef = firestore.collection(
-  "schedules/Redwood City/dates/2020_12_13/classes"
-);
+// implement auth and get current user from state
 const testUser = "tom";
 
 function ReservationTable() {
+  // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
+  const firestore = useFirestore();
+  // Get a reference to the schedule collection for the currently selected date
+  // TODO: switch to the reservationsRef below when there is enough data and I am done testing
+  const reservationRef = firestore.collection(
+    "schedules/Redwood City/dates/2020_12_13/classes"
+  );
+  // This context object holds the state from the DatePicker component which sets the date
   const context = useContext(MyContext);
-  const [reservationData, setReservationData] = useState(null);
-  const headers = ["Time", "Workout Type"];
+  // This is adding a snapshot listener to this collection in React's useEffect method
+  // under the hood. This removes the need for a `setReservationData` method call.
+  // The idField param is what sets the doc.id value equal to the document's id, o/w it is not there by default
+  // This will also handle listener detachment, kudos to the reactfire team!
+  // TODO: what sort of error handling can be put in place here?
+  const reservationData = useFirestoreCollectionData(reservationRef, { idField: 'id' });
+  // Of the documents keys, these are the ones we want as columns in the table
+  const headers = ["time", "workoutType"];
+  // Soon to be used when testing is over and reservation info is added daily/weekly
+  // Verified that this updates when the datepicker date is changed
   const reservationsRef = firestore.collection(
     `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
   );
 
-  // On function component mount lifecycle action
-  useEffect(() => {
-    /**
-     * Summary: Reach out to Firestore and get all schedule/reservation entry data
-     * @return {Object} Object containing multiple schedule entries
-     */
-    var unsubscribe = getReservationData();
-    // remember to unsubscribe from your realtime listener on unmount or you will create a memory leak. Why did we return a function from our effect? This is the optional cleanup mechanism for effects.
-    return () => unsubscribe();
-  }, []);
-
-  // code to getSchedule using a firestore listener
-  // TODO: may want to move this to its own file: https://stackoverflow.com/a/60029676/9586164
-  function getReservationData() {
-    // if using a listener you will also need to detach the listener
-    try {
-      var unsubscribe = reservationRef.onSnapshot(
-        function (querySnapshot) {
-          let reservationData = [];
-          // querySnapshot holds multiple documents, we need to unpack all of them
-          querySnapshot.forEach(function (doc) {
-            let docData = doc.data();
-            // for each workout listed in the firestore document create a schedule entry
-            reservationData.push({
-              "Workout Type": docData.workoutType,
-              id: doc.id,
-              reservationCnt: docData.reservationCnt,
-              Time: docData.time,
-              reservedUsers: docData.reservedUsers,
-            });
-          });
-          setReservationData(reservationData);
-        },
-        function (error) {
-          console.log(
-            `ReservationTable Listener encountered an error: ${error}`
-          );
-        }
-      );
-      return unsubscribe;
-    } catch (err) {
-      console.log("Error getting documents", err);
-    }
-  }
-
   function removeReservation(row) {
+    /*
+    Summary: Atomically decrements the reservationCnt and removes the signed in user from the class
+    @param {Object} row 
+    */
+    // TODO: remove debug logging
     console.log(`removing reservation for ${testUser}`);
+    // Get a Firestore reference to the class within the classes collection for the day selected
     let docRef = reservationRef.doc(row["id"]);
     const decrement = firebase.firestore.FieldValue.increment(-1);
     const removeUser = firebase.firestore.FieldValue.arrayRemove(testUser);
@@ -78,6 +51,10 @@ function ReservationTable() {
   }
 
   function incrementReservation(docId) {
+    /*
+    Summary: Attempts a transaction to add a user and increment the reservationCnt of a class
+    @param {string} docId
+    */
     //   get a reference to the doc being updated
     let docRef = reservationRef.doc(docId);
     const increment = firebase.firestore.FieldValue.increment(1);
@@ -121,12 +98,17 @@ function ReservationTable() {
             <th colSpan="3">{context.state.scheduleDate} Classes</th>
           </tr>
         </thead>
-        <TableBody
-          headers={headers}
-          rows={reservationData}
-          incrementReservation={incrementReservation}
-          removeReservation={removeReservation}
-        ></TableBody>
+        <tbody>
+          {reservationData.data && reservationData.data.map((data) => {
+            return <TableBody
+              key={data.id}
+              headers={headers}
+              reservationData={data}
+              incrementReservation={incrementReservation}
+              removeReservation={removeReservation} />
+          }
+          )}
+        </tbody>
       </table>
     </div>
   );
@@ -134,12 +116,12 @@ function ReservationTable() {
 
 const TableBody = ({
   headers,
-  rows,
+  reservationData,
   incrementReservation,
   removeReservation,
 }) => {
   const columns = headers ? headers.length : 0;
-  const showSpinner = rows === null;
+  const showSpinner = reservationData === null;
 
   function buildReservationButton(row) {
     // If the user has reserved a spot in the class
@@ -157,8 +139,8 @@ const TableBody = ({
           {row["reservationCnt"] < 12 ? (
             <small>{row["reservationCnt"]} of 12 reserved</small>
           ) : (
-            <small>Class Full</small>
-          )}
+              <small>Class Full</small>
+            )}
         </div>
       );
     }
@@ -190,12 +172,12 @@ const TableBody = ({
   function buildRow(row, headers) {
     return (
       // Wonky way of creating a unique key per row, but works for now
-      <tr key={row["Workout Type"] + row["Time"]}>
+      <tr key={row["workoutType"] + row["time"]}>
         {headers.map((value, index) => {
           return (
             <td key={index}>
               {/* if it is the column with workout type, then we need to render resevation btn etc */}
-              {value === "Workout Type" && (
+              {value === "workoutType" && (
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 vcenter">{row[value]}</div>
@@ -203,7 +185,7 @@ const TableBody = ({
                   </div>
                 </div>
               )}
-              {value !== "Workout Type" && (
+              {value !== "workoutType" && (
                 <React.Fragment>{row[value]}</React.Fragment>
               )}
             </td>
@@ -214,7 +196,7 @@ const TableBody = ({
   }
 
   return (
-    <tbody>
+    <React.Fragment>
       {showSpinner && (
         <tr key="spinner-0">
           <td colSpan={columns} className="text-center">
@@ -225,11 +207,9 @@ const TableBody = ({
         </tr>
       )}
       {!showSpinner &&
-        rows &&
-        rows.map((value) => {
-          return buildRow(value, headers);
-        })}
-    </tbody>
+        reservationData &&
+        buildRow(reservationData, headers)}
+    </React.Fragment>
   );
 };
 
