@@ -1,6 +1,10 @@
 import firebase from "firebase/app";
-import React, { useContext } from "react";
-import { useFirestore, useFirestoreCollectionData } from "reactfire";
+import "firebase/auth";
+import 'firebase/firestore';
+import React, { useContext, useEffect } from "react";
+import {
+  useAuth, useFirestore, useFirestoreCollectionData, useUser
+} from "reactfire";
 import { MyContext } from "../../providers/MyProvider";
 import "./ReservationTable.css";
 
@@ -13,6 +17,10 @@ function ReservationTable() {
   // Get a reference to the schedule collection for the currently selected date
   // TODO: switch to the reservationsRef below when there is enough data and I am done testing
   const reservationRef = firestore.collection(
+    "schedules/Redwood City/dates/2020_12_13/classes"
+  ).orderBy('time', 'asc');
+  // Can't use .doc() after .orderBy() is applied to a collectionRef
+  const unorderedResevationRef = firestore.collection(
     "schedules/Redwood City/dates/2020_12_13/classes"
   );
   // This context object holds the state from the DatePicker component which sets the date
@@ -30,9 +38,17 @@ function ReservationTable() {
   const reservationsRef = firestore.collection(
     `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
   );
+  // Lazily load / setup firebase.auth()
+  const auth = useAuth();
+  // Subscribe to auth updates (i.e. onAuthStateChanged())
+  const user = useUser();
+
+  useEffect(() => {
+    auth.signInAnonymously();
+  }, [auth]);
 
   function removeReservation(row) {
-    /*
+    /**
     Summary: Atomically decrements the reservationCnt and removes the signed in user from the class
     @param {Object} row Firestore document data pertaining to a class w/ reservation data.
     @return {} null
@@ -40,7 +56,7 @@ function ReservationTable() {
     // TODO: remove debug logging
     console.log(`removing reservation for ${testUser}`);
     // Get a Firestore reference to the class within the classes collection for the day selected
-    let docRef = reservationRef.doc(row["id"]);
+    let docRef = unorderedResevationRef.doc(row["id"]);
     const decrement = firebase.firestore.FieldValue.increment(-1);
     const removeUser = firebase.firestore.FieldValue.arrayRemove(testUser);
     // Atomically remove a user from the "reservedUsers" array field.
@@ -52,13 +68,13 @@ function ReservationTable() {
   }
 
   function incrementReservation(docId) {
-    /*
+    /** 
     Summary: Attempts a transaction to add a user and increment the reservationCnt of a class
     @param {string} docId Firestore document id of class being incremented.
     @return {Promise<T>} 
     */
     // Get a reference to the class doc being updated
-    let docRef = reservationRef.doc(docId);
+    let docRef = unorderedResevationRef.doc(docId);
     const increment = firebase.firestore.FieldValue.increment(1);
     const addUser = firebase.firestore.FieldValue.arrayUnion(testUser);
     // using a transaction to ensure we don't exceed the max number of reservations
@@ -133,7 +149,7 @@ const TableBody = ({
   const showSpinner = reservationData === null;
 
   function buildReservationButton(row) {
-    /*
+    /** 
     Summary: Responsible for building the reservation button and handling the different UI, given state passed to it in the `row`
     @param {Object} row Firestore document data pertaining to a class w/ reservation data.
     @return {Object} HTML to be rendered. Specifically the reservation button placed in the table body's column 
@@ -184,7 +200,7 @@ const TableBody = ({
   }
 
   function buildRow(row, headers) {
-    /*
+    /**
     Summary: Responsible for building individual table rows given a Firestore document representing a class
     @param: {Object} row Firestore document data pertaining to a class w/ reservation data.
     @param: {Array} headers List of all the column headers for the reservation table.
