@@ -1,9 +1,9 @@
 import React from "react";
-import "./NavigationBar.css";
+import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/NavBar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Container from "react-bootstrap/Container";
+import "./NavigationBar.css";
 
 function NavigationBar() {
   return (
@@ -32,6 +32,7 @@ function NavigationBar() {
             <Nav.Link href="/schedule">Schedule</Nav.Link>
             <Nav.Link href="/pricing">Pricing</Nav.Link>
             <Nav.Link>Contact</Nav.Link>
+            <Nav.Link href="/login">Member SignIn</Nav.Link>
           </Nav>
         </NavBar.Collapse>
       </Container>

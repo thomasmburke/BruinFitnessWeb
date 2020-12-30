@@ -1,12 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavigationBar from "./components/common/NavigationBar";
-import Footer from "./components/common/Footer";
-import Home from "./components/home/Home";
 import About from "./components/about/About";
+import Footer from "./components/common/Footer";
+import NavigationBar from "./components/common/NavigationBar";
+import Home from "./components/home/Home";
 import Schedule from "./components/schedule/Schedule";
-import MyProvider from "./providers/MyProvider"
+import MyProvider from "./providers/MyProvider";
 
 function App() {
   return (
@@ -30,6 +30,9 @@ function App() {
               </Route>
               <Route path="/contact">
                 <h1>Contact</h1>
+              </Route>
+              <Route path="/login">
+                <h1>Login</h1>
               </Route>
               {/* default route & Home page */}
               <Route path="/">
