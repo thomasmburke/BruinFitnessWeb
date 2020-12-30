@@ -6,6 +6,7 @@ import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
 import Home from "./components/home/Home";
 import Schedule from "./components/schedule/Schedule";
+import SignInForm from "./components/signin-form/SignInForm";
 import MyProvider from "./providers/MyProvider";
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
                 <h1>Contact</h1>
               </Route>
               <Route path="/login">
-                <h1>Login</h1>
+                <SignInForm />
               </Route>
               {/* default route & Home page */}
               <Route path="/">

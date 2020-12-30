@@ -1,10 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import 'firebase/firestore';
-import React, { useContext, useEffect } from "react";
-import {
-  useAuth, useFirestore, useFirestoreCollectionData, useUser
-} from "reactfire";
+import React, { useContext } from "react";
+import { useFirestore, useFirestoreCollectionData } from "reactfire";
 import { MyContext } from "../../providers/MyProvider";
 import "./ReservationTable.css";
 
@@ -39,13 +37,13 @@ function ReservationTable() {
     `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
   );
   // Lazily load / setup firebase.auth()
-  const auth = useAuth();
-  // Subscribe to auth updates (i.e. onAuthStateChanged())
-  const user = useUser();
+  // const auth = useAuth();
+  // // Subscribe to auth updates (i.e. onAuthStateChanged())
+  // const user = useUser();
 
-  useEffect(() => {
-    auth.signInAnonymously();
-  }, [auth]);
+  // useEffect(() => {
+  //   auth.signInAnonymously();
+  // }, [auth]);
 
   function removeReservation(row) {
     /**
