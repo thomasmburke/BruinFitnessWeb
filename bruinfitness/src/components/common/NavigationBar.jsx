@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/NavBar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { AuthCheck, useAuth, useUser } from 'reactfire';
+import { AuthCheck, useAuth } from 'reactfire';
 import "./NavigationBar.css";
 
 const signOut = auth => auth.signOut().then(() => console.log('signed out'));
@@ -11,8 +11,6 @@ const signOut = auth => auth.signOut().then(() => console.log('signed out'));
 function NavigationBar() {
 
   const auth = useAuth();
-  const { data: user } = useUser();
-  // const user = useUser();
 
   return (
     <NavBar bg="light" expand="md" sticky="top">
@@ -42,8 +40,6 @@ function NavigationBar() {
             <Nav.Link>Contact</Nav.Link>
             <AuthCheck fallback={<Nav.Link href="/login">Member SignIn</Nav.Link>}>
               <div>
-              {/* {user && <p onClick={() => signOut(auth)}>{user.displayName}</p>} */}
-              {/* {user && <p onClick={() => signOut(auth)}>Sign Out</p>} */}
               {<Nav.Link onClick={() => signOut(auth)}>Sign Out</Nav.Link>}
               </div>
             </AuthCheck>

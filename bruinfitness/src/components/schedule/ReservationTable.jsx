@@ -6,9 +6,6 @@ import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { MyContext } from "../../providers/MyProvider";
 import "./ReservationTable.css";
 
-// implement auth and get current user from state
-const testUser = "tom";
-
 function ReservationTable() {
   // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
   const firestore = useFirestore();
