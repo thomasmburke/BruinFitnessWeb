@@ -5,6 +5,7 @@ import About from "./components/about/About";
 import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
 import Home from "./components/home/Home";
+import Pricing from "./components/pricing/Pricing";
 import Schedule from "./components/schedule/Schedule";
 import SignInForm from "./components/signin-form/SignInForm";
 import Team from "./components/team/Team";
@@ -31,7 +32,7 @@ function App() {
                 <Schedule />
               </Route>
               <Route path="/pricing">
-                <h1>Pricing</h1>
+                <Pricing />
               </Route>
               <Route path="/contact">
                 <h1>Contact</h1>
