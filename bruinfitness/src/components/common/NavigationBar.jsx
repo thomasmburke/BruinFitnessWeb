@@ -42,8 +42,9 @@ function NavigationBar() {
             <Nav.Link>Contact</Nav.Link>
             <AuthCheck fallback={<Nav.Link href="/login">Member SignIn</Nav.Link>}>
               <div>
-              {user && <p onClick={() => signOut(auth)}>{user.displayName}</p>}
-              {user && <p onClick={() => signOut(auth)}>Sign Out</p>}
+              {/* {user && <p onClick={() => signOut(auth)}>{user.displayName}</p>} */}
+              {/* {user && <p onClick={() => signOut(auth)}>Sign Out</p>} */}
+              {<Nav.Link onClick={() => signOut(auth)}>Sign Out</Nav.Link>}
               </div>
             </AuthCheck>
             

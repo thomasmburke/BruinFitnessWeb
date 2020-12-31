@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Used to fix our footer to the bottom of the page and the navbar to the top */
+html, body {
+  height: 100% !important;
+}
+.content-holder {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  flex: 1 0 auto !important;
+  padding: var(--space) var(--space) 0 !important;
+  width: 100% !important;
+}
+footer, .navbar {
+  flex-shrink: 0 !important;
+}

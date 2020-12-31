@@ -7,15 +7,18 @@ import NavigationBar from "./components/common/NavigationBar";
 import Home from "./components/home/Home";
 import Schedule from "./components/schedule/Schedule";
 import SignInForm from "./components/signin-form/SignInForm";
+import "./index.css";
 import MyProvider from "./providers/MyProvider";
 
 function App() {
   return (
     <MyProvider>
-      <React.Fragment>
+      {/* <React.Fragment> */}
+      <div className="content-holder">
         <NavigationBar />
+        <div className="content">
         <Router>
-          <div className="app">
+          {/* <div className="app"> */}
             <Switch>
               <Route path="/about">
                 <About />
@@ -40,10 +43,12 @@ function App() {
                 <Home />
               </Route>
             </Switch>
-          </div>
+          {/* </div> */}
         </Router>
+        </div>
         <Footer />
-      </React.Fragment>
+      </div>
+      {/* </React.Fragment> */}
     </MyProvider>
   );
 }
