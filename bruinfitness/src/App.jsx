@@ -7,6 +7,7 @@ import NavigationBar from "./components/common/NavigationBar";
 import Home from "./components/home/Home";
 import Schedule from "./components/schedule/Schedule";
 import SignInForm from "./components/signin-form/SignInForm";
+import Team from "./components/team/Team";
 import "./index.css";
 import MyProvider from "./providers/MyProvider";
 
@@ -24,7 +25,7 @@ function App() {
                 <About />
               </Route>
               <Route path="/team">
-                <h1>Team</h1>
+                <Team />
               </Route>
               <Route path="/schedule">
                 <Schedule />
