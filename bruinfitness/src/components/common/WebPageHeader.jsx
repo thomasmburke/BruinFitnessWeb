@@ -8,10 +8,10 @@ const FadeInUpDiv = styled.div`
   animation: 1s ${fadeInUpAnimation} !important;
 `;
 
-function TeamHeader() {
+function WebPageHeader({header}) {
     return (
-        <FadeInUpDiv><h1>Our Team</h1></FadeInUpDiv>
+        <FadeInUpDiv><h1>{header}</h1></FadeInUpDiv>
     )
 }
 
-export default TeamHeader
+export default WebPageHeader

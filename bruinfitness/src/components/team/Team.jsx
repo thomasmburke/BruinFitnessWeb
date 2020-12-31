@@ -1,11 +1,12 @@
 import React from 'react'
 import CalloutText from '../common/CalloutText'
-import TeamHeader from './TeamHeader'
+import WebPageHeader from '../common/WebPageHeader'
 
 function Team() {
     return (
         <div className="wrapper pt-2">
-            <TeamHeader />
+            <WebPageHeader header="Our Team" />
+
             <CalloutText />
         </div>
     )
