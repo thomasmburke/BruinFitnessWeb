@@ -1,0 +1,26 @@
+.card {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    max-width: 500px;
+    /* center the box horizontally */
+    margin: auto;
+}
+.card-text {
+    color: whitesmoke;
+}
+
+.card-img-top {
+    border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+.card:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.fullpage {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+
