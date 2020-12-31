@@ -24,3 +24,10 @@
 }
 
 
+/* firebase UI CSS overrides */
+.firebaseui-id-submit  {
+    background-color: #039509 !important;
+}
+.firebaseui-id-secondary-link {
+    color: #039509 !important;
+}
