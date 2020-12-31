@@ -6,7 +6,7 @@ p {
   color: #4f4f4f;
 }
 
-h1 {
+.pageHeader {
   text-align: center;
   font-size: 175%;
   text-transform: uppercase;

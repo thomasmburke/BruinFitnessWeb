@@ -10,7 +10,7 @@ const FadeInUpDiv = styled.div`
 
 function WebPageHeader({header}) {
     return (
-        <FadeInUpDiv><h1>{header}</h1></FadeInUpDiv>
+        <FadeInUpDiv><h1 className="pageHeader">{header}</h1></FadeInUpDiv>
     )
 }
 
