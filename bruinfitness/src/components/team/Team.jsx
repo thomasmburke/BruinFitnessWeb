@@ -1,13 +1,14 @@
-import React from 'react'
-import CalloutText from '../common/CalloutText'
-import WebPageHeader from '../common/WebPageHeader'
-import CoachCard from './CoachCard'
+import React from 'react';
+import Container from "react-bootstrap/Container";
+import CalloutText from '../common/CalloutText';
+import WebPageHeader from '../common/WebPageHeader';
+import CoachCard from './CoachCard';
 
 function Team() {
     return (
         <div className="wrapper pt-2">
             <WebPageHeader header="Our Team" />
-            <div className="container-fluid padding">
+            <Container fluid>
                 <div className="row padding">
                     <CoachCard 
                     animation="slideInLeft" 
@@ -30,7 +31,8 @@ function Team() {
                     coachDesc="Tom is an athelete from several backgrounds including kung
                             fu, weightlifting, and gymnastics"/>
                 </div>
-            </div>
+                <hr />
+            </Container>
             <CalloutText />
         </div>
     )
