@@ -29,15 +29,13 @@ const SignInForm = () => {
       <div className="fullpage">
         <div className="wrapper">
           <Card bg="dark" text="light" border="dark" className="text-center">
-            {/* <Card.Header>Member Sign In</Card.Header> */}
             <Card.Body>
               <Card.Title>Member Sign In</Card.Title>
-              <Card.Text>
+              <Card.Text className="signInCardText">
                 Only members can sign in, to get an account come visit our gym!
               </Card.Text>
               <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth()} />
             </Card.Body>
-            {/* <Card.Footer className="text-muted"></Card.Footer> */}
           </Card>  
         </div>
         </div>
