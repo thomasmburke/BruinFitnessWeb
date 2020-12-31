@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import 'firebase/firestore';
 import React, { useContext } from "react";
-import { useFirestore, useFirestoreCollectionData } from "reactfire";
+import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { MyContext } from "../../providers/MyProvider";
 import "./ReservationTable.css";
 
@@ -36,14 +36,8 @@ function ReservationTable() {
   const reservationsRef = firestore.collection(
     `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
   );
-  // Lazily load / setup firebase.auth()
-  // const auth = useAuth();
-  // // Subscribe to auth updates (i.e. onAuthStateChanged())
-  // const user = useUser();
-
-  // useEffect(() => {
-  //   auth.signInAnonymously();
-  // }, [auth]);
+  // Subscribe to auth updates (i.e. onAuthStateChanged())
+  const { data: user } = useUser();
 
   function removeReservation(row) {
     /**
@@ -52,11 +46,11 @@ function ReservationTable() {
     @return {} null
     */
     // TODO: remove debug logging
-    console.log(`removing reservation for ${testUser}`);
+    console.log(`removing reservation for ${user.uid}`);
     // Get a Firestore reference to the class within the classes collection for the day selected
     let docRef = unorderedResevationRef.doc(row["id"]);
     const decrement = firebase.firestore.FieldValue.increment(-1);
-    const removeUser = firebase.firestore.FieldValue.arrayRemove(testUser);
+    const removeUser = firebase.firestore.FieldValue.arrayRemove(user.uid);
     // Atomically remove a user from the "reservedUsers" array field.
     // Atomically decrement the reservationCnt of the class by 1.
     docRef.update({
@@ -74,7 +68,7 @@ function ReservationTable() {
     // Get a reference to the class doc being updated
     let docRef = unorderedResevationRef.doc(docId);
     const increment = firebase.firestore.FieldValue.increment(1);
-    const addUser = firebase.firestore.FieldValue.arrayUnion(testUser);
+    const addUser = firebase.firestore.FieldValue.arrayUnion(user.uid);
     // using a transaction to ensure we don't exceed the max number of reservations
     // Optional TODO: this transaction may be able to be replaced by clever security rule usage
     return firestore
@@ -125,6 +119,7 @@ function ReservationTable() {
               key={data.id}
               headers={headers}
               reservationData={data}
+              userId={user.uid}
               incrementReservation={incrementReservation}
               removeReservation={removeReservation} />
           }
@@ -138,6 +133,7 @@ function ReservationTable() {
 const TableBody = ({
   headers,
   reservationData,
+  userId,
   incrementReservation,
   removeReservation,
 }) => {
@@ -153,7 +149,7 @@ const TableBody = ({
     @return {Object} HTML to be rendered. Specifically the reservation button placed in the table body's column 
     */
     // If the user has reserved a spot in the class
-    if (row["reservedUsers"].includes(testUser)) {
+    if (row["reservedUsers"].includes(userId)) {
       // If they are in the class we need to allow them to leave the class if they can't make it
       return (
         <div className="col-md-3">

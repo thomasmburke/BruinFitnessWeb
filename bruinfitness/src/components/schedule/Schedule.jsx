@@ -1,4 +1,5 @@
-import React, { Suspense } from "react";
+import React from "react";
+import { AuthCheck } from "reactfire";
 import CalloutText from "../common/CalloutText";
 import ReservationTable from "./ReservationTable";
 import ScheduleDatePicker from "./ScheduleDatePicker";
@@ -10,9 +11,9 @@ function Schedule() {
       <ScheduleDatePicker />
       <ScheduleTable />
       <br />
-      <Suspense fallback={<span>Loading...</span>}>
+      <AuthCheck>
         <ReservationTable />
-      </Suspense>
+      </AuthCheck>
       <CalloutText />
     </div>
   );
