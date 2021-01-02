@@ -28,7 +28,7 @@ const SignInForm = () => {
     return (
       <div className="fullpage">
         <div className="wrapper">
-          <Card bg="dark" text="light" border="dark" className="text-center">
+          <Card bg="dark" text="light" border="dark" className="text-center sign-in-card">
             <Card.Body>
               <Card.Title>Member Sign In</Card.Title>
               <Card.Text className="signInCardText">
