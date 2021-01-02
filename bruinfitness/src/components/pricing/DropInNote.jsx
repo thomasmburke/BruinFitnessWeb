@@ -6,7 +6,7 @@ function DropInNote() {
     return (
         <section className="dnow-regionsWrap">
             <div className="dnow-regionsContent">
-                <div className="card bg-dark text-white">
+                <div className="card bg-dark text-white text-center">
                 <img src="/images/crossfit_banner_stock_image_slim.png" alt="" />
                 <div className="overlay-div"></div>
                 <div className="card-img-overlay d-flex align-items-center container">
