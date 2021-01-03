@@ -3,9 +3,9 @@ import WebPageHeaderWithBackgroundImage from '../common/WebPageHeaderWithBackgro
 
 function Contact() {
     return (
-        <div>
+        <React.Fragment>
             <WebPageHeaderWithBackgroundImage />
-        </div>
+        </React.Fragment>
     )
 }
 

@@ -1,5 +1,13 @@
 import React from 'react';
-import ScrollAnimation from "react-animate-on-scroll";
+import fadeInUp from "react-animations/lib/fade-in-up";
+import styled, { keyframes } from "styled-components";
+import "./WebPageHeaderWithBackgroundImage.css";
+
+const fadeInUpAnimation = keyframes`${fadeInUp}`;
+
+const FadeInUpDiv = styled.div`
+  animation: 1s ${fadeInUpAnimation} !important;
+`;
 
 function WebPageHeaderWithBackgroundImage() {
     return (
@@ -13,11 +21,11 @@ function WebPageHeaderWithBackgroundImage() {
                 >
                     <div className="row mb-5">
                     <div className="col-sm-12">
-                    <ScrollAnimation animateIn="slideInUp" animateOnce={true}>
-                        <h2 className="card-title">
-                            CONTACT US
-                        </h2>
-                        </ScrollAnimation>
+                        <FadeInUpDiv>
+                            <h2 className="card-title">
+                                CONTACT US
+                            </h2>
+                        </FadeInUpDiv>
                     </div>
                     </div>
                 </div>
