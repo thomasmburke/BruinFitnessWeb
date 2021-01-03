@@ -4,6 +4,7 @@ import "./App.css";
 import About from "./components/about/About";
 import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
+import Contact from "./components/contact/Contact";
 import Home from "./components/home/Home";
 import Pricing from "./components/pricing/Pricing";
 import Schedule from "./components/schedule/Schedule";
@@ -35,7 +36,7 @@ function App() {
                 <Pricing />
               </Route>
               <Route path="/contact">
-                <h1>Contact</h1>
+                <Contact />
               </Route>
               <Route path="/login">
                 <SignInForm />

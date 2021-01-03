@@ -37,7 +37,7 @@ function NavigationBar() {
             </NavDropdown>
             <Nav.Link href="/schedule">Schedule</Nav.Link>
             <Nav.Link href="/pricing">Pricing</Nav.Link>
-            <Nav.Link>Contact</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
             <AuthCheck fallback={<Nav.Link href="/login">Member SignIn</Nav.Link>}>
               <div>
               {<Nav.Link onClick={() => signOut(auth)}>Sign Out</Nav.Link>}
