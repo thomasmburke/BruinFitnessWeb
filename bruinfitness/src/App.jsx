@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import About from "./components/about/About";
+import Admin from "./components/admin/Admin";
 import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
 import Contact from "./components/contact/Contact";
@@ -40,6 +41,9 @@ function App() {
               </Route>
               <Route path="/login">
                 <SignInForm />
+              </Route>
+              <Route path="/admin">
+                <Admin />
               </Route>
               {/* default route & Home page */}
               <Route path="/">
