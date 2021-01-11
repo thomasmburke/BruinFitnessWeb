@@ -17,6 +17,15 @@ function Admin() {
         // If you want to see the \n newline characters
         // console.log(JSON.stringify(`workoutType: ${workoutType}\nwarmUp: ${warmUp}\nstrength: ${strength}\nworkout: ${workout}`));
         console.log(`workoutType: ${workoutType}\nwarmUp: ${warmUp}\nstrength: ${strength}\nworkout: ${workout}`);
+        firestore.collection('workouts').add({
+            workoutType: workoutType,
+            warmUp: warmUp,
+            strength: strength,
+            workout: workout,
+            workoutDate: "2021_01_10"
+        })
+        .then(() => console.log("workout successfully added!"))
+        .catch((error) => console.log(`Error writing workout document: ${error}`))
     }
 
     return (
