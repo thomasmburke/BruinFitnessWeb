@@ -15,7 +15,7 @@ function Schedule() {
       <ScheduleDatePicker />
       <ScheduleTable />
       <br />
-      <AuthCheck>
+      <AuthCheck >
         {/* <Container> */}
           <Row>
             <Col>

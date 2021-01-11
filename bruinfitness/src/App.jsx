@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AuthCheck, useUser } from "reactfire";
 import "./App.css";
 import About from "./components/about/About";
 import Admin from "./components/admin/Admin";
@@ -15,6 +16,9 @@ import "./index.css";
 import MyProvider from "./providers/MyProvider";
 
 function App() {
+
+  const {data: user} = useUser();
+
   return (
     <MyProvider>
       {/* <React.Fragment> */}
@@ -43,7 +47,10 @@ function App() {
                 <SignInForm />
               </Route>
               <Route path="/admin">
-                <Admin />
+                <AuthCheck fallback={<Home />}>
+                {/* <AuthCheck fallback={<Home />} requiredClaims={{admin: true}}> */}
+                  <Admin />
+                </AuthCheck>
               </Route>
               {/* default route & Home page */}
               <Route path="/">

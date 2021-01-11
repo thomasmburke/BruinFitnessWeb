@@ -1,5 +1,8 @@
 - make navbar navlinks active when currently being used
 - make the reservation upper limit a Firestore document instead of being hardcoded
+- make admin nav item appear for admins
+- create admin error component
+
 
 Data Model:
 - when adding workouts for the week the fitness programmer will select the day in the UI
