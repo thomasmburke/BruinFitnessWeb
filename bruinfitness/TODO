@@ -2,6 +2,7 @@
 - make the reservation upper limit a Firestore document instead of being hardcoded
 - make admin nav item appear for admins
 - create admin error component
+- Ensure there is an alert sent to an admin if one of the next 3 days doesn't have workout programming assigned to it yet
 
 
 Data Model:
