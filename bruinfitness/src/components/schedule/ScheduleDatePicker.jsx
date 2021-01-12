@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./ScheduleDatePicker.css";
 import { MyContext } from "../../providers/MyProvider";
+import "./ScheduleDatePicker.css";
 
 function ScheduleDatePicker() {
   const context = useContext(MyContext);
@@ -38,18 +38,3 @@ function ScheduleDatePicker() {
 }
 
 export default ScheduleDatePicker;
-
-{
-  /* <MyContext.Consumer>
-            {(context) =>(
-              <button onClick={context.changeDate}>Change the date!</button>
-            )}
-        </MyContext.Consumer> */
-}
-
-{
-  /* <MyContext.Consumer>
-        {(context) =>(
-)}
-      </MyContext.Consumer> */
-}
