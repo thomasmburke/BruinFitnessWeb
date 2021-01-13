@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { useFirestore } from "reactfire";
 
@@ -10,6 +11,7 @@ function Admin() {
     const [workoutDate, setWorkoutDate] = useState(new Date().toISOString().substring(0, 10));
     const [workoutType, setWorkoutType] = useState('Metcon');
     const [warmUp, setWarmUp] = useState();
+    const [skill, setSkill] = useState();
     const [strength, setStrength] = useState();
     const [workout, setWorkout] = useState();
 
@@ -17,11 +19,12 @@ function Admin() {
         event.preventDefault();
         // If you want to see the \n newline characters
         // console.log(JSON.stringify(`workoutType: ${workoutType}\nwarmUp: ${warmUp}\nstrength: ${strength}\nworkout: ${workout}`));
-        console.log(`workoutDate: ${workoutDate}\nworkoutType: ${workoutType}\nwarmUp: ${warmUp}\nstrength: ${strength}\nworkout: ${workout}`);
+        console.log(`workoutDate: ${workoutDate}\nworkoutType: ${workoutType}\nwarmUp: ${warmUp}\nskill: ${skill}\nstrength: ${strength}\nworkout: ${workout}`);
         firestore.collection('workouts').add({
             workoutType: workoutType,
-            warmUp: warmUp,
-            strength: strength,
+            warmUp: warmUp || null,
+            skill: skill || null,
+            strength: strength || null,
             workout: workout,
             workoutDate: workoutDate
         })
@@ -33,32 +36,42 @@ function Admin() {
         <div className="wrapper py-4">
             <h1 className="text-center">Workout Addition Form</h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="datepicker">
-                    <Form.Label>Workout Date</Form.Label>
-                    <Form.Control type="date" required value={workoutDate} onChange={e => setWorkoutDate(e.target.value)}/>
-                </Form.Group>
+                <Form.Row>
+                    <Form.Group controlId="datepicker" as={Col}>
+                        <Form.Label>Workout Date</Form.Label>
+                        <Form.Control type="date" required value={workoutDate} onChange={e => setWorkoutDate(e.target.value)}/>
+                    </Form.Group>
 
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Workout Type</Form.Label>
-                    <Form.Control as="select" value={workoutType} onChange={e => setWorkoutType(e.target.value)}>
-                    <option>Metcon</option>
-                    <option>Weightlifting</option>
-                    <option>Mobility</option>
-                    <option>Kettlebell</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="warmUp">
-                    <Form.Label>WARM-UP</Form.Label>
-                    <Form.Control as="textarea" rows={12} value={warmUp} onChange={e => setWarmUp(e.target.value)}/>
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlTextarea2">
-                    <Form.Label>STRENGTH</Form.Label>
-                    <Form.Control as="textarea" rows={12} value={strength} onChange={e => setStrength(e.target.value)}/>
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlTextarea3">
-                    <Form.Label>WORKOUT</Form.Label>
-                    <Form.Control as="textarea" rows={12} required value={workout} onChange={e => setWorkout(e.target.value)}/>
-                </Form.Group>
+                    <Form.Group controlId="workoutType" as={Col}>
+                        <Form.Label>Workout Type</Form.Label>
+                        <Form.Control as="select" required value={workoutType} onChange={e => setWorkoutType(e.target.value)}>
+                        <option>Metcon</option>
+                        <option>Weightlifting</option>
+                        <option>Mobility</option>
+                        <option>Kettlebell</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group controlId="warmUp" as={Col}>
+                        <Form.Label>WARM-UP</Form.Label>
+                        <Form.Control as="textarea" rows={12} value={warmUp} onChange={e => setWarmUp(e.target.value)}/>
+                    </Form.Group>
+                    <Form.Group controlId="skill" as={Col}>
+                        <Form.Label>SKILL</Form.Label>
+                        <Form.Control as="textarea" rows={12} value={skill} onChange={e => setSkill(e.target.value)}/>
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group controlId="strength" as={Col}>
+                        <Form.Label>STRENGTH</Form.Label>
+                        <Form.Control as="textarea" rows={12} value={strength} onChange={e => setStrength(e.target.value)}/>
+                    </Form.Group>
+                    <Form.Group controlId="workout" as={Col}>
+                        <Form.Label>WORKOUT</Form.Label>
+                        <Form.Control as="textarea" rows={12} required value={workout} onChange={e => setWorkout(e.target.value)}/>
+                    </Form.Group>
+                </Form.Row>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
