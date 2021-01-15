@@ -13,25 +13,33 @@ function Admin() {
     const [workoutDate, setWorkoutDate] = useState(new Date().toISOString().substring(0, 10));
     // Metcon is currently the first option in the selector so it is the default
     const [workoutType, setWorkoutType] = useState('Metcon');
+    // Holds the meat of the workout programming
     const [workoutInfo, setWorkoutInfo] = useState(emptyWorkoutInfo.current)
 
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
     const firestore = useFirestore();
 
+    // Not using reactfire as I needed better control over when a DB read is neccessary.
+    // e.g. we only need to read the database when the workoutDate has changed
+    // TODO: if workoutType is changed we don't need to read the DB, we just need to update the workoutInfo
     useEffect(() => {
+        // Each day has a doc with the date as the id, given a change of date we need to fetch new data
         firestore.collection("workouts").doc(workoutDate).get().then(function(doc) {
             if (doc.exists) {
                 let workoutData = doc.data();
-                console.log(`Document Data: ${workoutData}`);
+                // Check if we previously recorded a workout for the selected workoutType
                 if (workoutData[workoutType]) {
+                    // If there is a previously logged workout for the workoutType update the workoutInfo state object
                     setWorkoutInfo(workoutData[workoutType])
                 }
                 else {
-                    console.log('made it in else')
+                    // If we have not previously logged a workout for the selected workoutType
+                    // then set the workoutInfo state object to empty
                     setWorkoutInfo(emptyWorkoutInfo.current);
                 }
             }
             else {
+                // If the doc we are looking for does not exist then workoutInfo should be empty
                 console.log(`no workout document for ${workoutDate}`)
                 setWorkoutInfo(emptyWorkoutInfo.current);
             }
@@ -41,11 +49,13 @@ function Admin() {
     }, [firestore, workoutDate, workoutType])
 
     const handleSubmit = (event) => {
+        // When the form is submitted we write the corresponding workoutInfo to Firestore
         event.preventDefault();
         // If you want to see the \n newline characters
         // console.log(JSON.stringify(`workoutType: ${workoutType}\nwarmUp: ${warmUp}\nstrength: ${strength}\nworkout: ${workout}`));
-        // console.log(`workoutDate: ${workoutDate}\nworkoutType: ${workoutType}\nwarmUp: ${warmUp}\nskill: ${skill}\nstrength: ${strength}\ncool down: ${coolDown}\nworkout: ${workout}`);
         console.log(`workoutDate: ${workoutDate}\nworkoutType: ${workoutType}\nwarmUp: ${workoutInfo.warmUp}\nskill: ${workoutInfo.skill}\nstrength: ${workoutInfo.strength}\ncool down: ${workoutInfo.coolDown}\nworkout: ${workoutInfo.workout}`);
+        // We set merge: true because if we perform a set on workoutType: 'Weightlifting'
+        // it will not overwrite a different workoutType map e.g. 'Metcon'
         firestore.collection('workouts').doc(workoutDate).set({
             [workoutType]: {
                 workoutType: workoutType,
@@ -62,6 +72,10 @@ function Admin() {
     }
 
     const handleChange = e => {
+        // For any new input in one of the workoutInfo text boxes we need to update that 
+        // specific portion of the workoutInfo state object while maintaining the rest
+
+        // extract the name and value elements of the Form.Control
         const {name, value} = e.target;
         setWorkoutInfo(prevWorkoutInfo => ({
             ...prevWorkoutInfo,
