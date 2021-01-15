@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,7 @@ function Admin() {
 
     const [workoutDate, setWorkoutDate] = useState(new Date().toISOString().substring(0, 10));
     const [workoutType, setWorkoutType] = useState('Metcon');
+    // const [warmUp, setWarmUp] = useState(data ? data[workoutType]["warmUp"] : '');
     const [warmUp, setWarmUp] = useState();
     const [skill, setSkill] = useState();
     const [strength, setStrength] = useState();
@@ -16,9 +17,37 @@ function Admin() {
 
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
     const firestore = useFirestore();
-    const workoutRef = firestore.collection(
-        "workouts"
-      ).doc(workoutDate);
+    // const workoutRef = firestore.collection(
+    //     "workouts"
+    //   ).doc(workoutDate);
+    // const { data } = useFirestoreDocDataOnce(workoutRef, {
+    //     initialData: {
+    //         "Metcon": {
+    //             "warmup": "poo"
+    //         }
+    //     }
+    // })
+    // console.log(data);
+
+    useEffect(() => {
+        firestore.collection("workouts").doc(workoutDate).get().then(function(doc) {
+            if (doc.exists) {
+                let workoutData = doc.data();
+                console.log(`Document Data: ${workoutData}`);
+                if (workoutData[workoutType]) {
+                    setWarmUp(workoutData[workoutType]['warmUp']); 
+                }
+                else {
+                    setWarmUp('');
+                }
+            }
+            else {
+                console.log(`no workout document for ${workoutDate}`)
+            }
+        }).catch(function(error) {
+            console.log(`Error getting document: ${error}`)
+        });
+    }, [firestore, workoutDate, workoutType])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -47,7 +76,7 @@ function Admin() {
                 <Form.Row>
                     <Form.Group controlId="datepicker" as={Col}>
                         <Form.Label>Workout Date</Form.Label>
-                        <Form.Control type="date" required value={workoutDate} onChange={e => setWorkoutDate(e.target.value)}/>
+                        <Form.Control type="date" required value={workoutDate} onChange={e => {console.log("in workoutDate onchange");setWorkoutDate(e.target.value)}}/>
                     </Form.Group>
 
                     <Form.Group controlId="workoutType" as={Col}>
