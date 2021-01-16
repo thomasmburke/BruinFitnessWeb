@@ -8,6 +8,8 @@ function Admin() {
 
     // Mainly using useRef here so eslint doesn't make me put emptyWorkoutInfo as a trigger arg for useEffect
     const emptyWorkoutInfo = useRef({warmUp: '', skill: '', strength: '', coolDown: '', workout: ''});
+    const prevWorkoutType = useRef('Metcon');
+    const workoutData = useRef()
 
     // Set to today's date in YYYY-mm-DD string format
     const [workoutDate, setWorkoutDate] = useState(new Date().toISOString().substring(0, 10));
@@ -23,29 +25,46 @@ function Admin() {
     // e.g. we only need to read the database when the workoutDate has changed
     // TODO: if workoutType is changed we don't need to read the DB, we just need to update the workoutInfo
     useEffect(() => {
-        // Each day has a doc with the date as the id, given a change of date we need to fetch new data
-        firestore.collection("workouts").doc(workoutDate).get().then(function(doc) {
-            if (doc.exists) {
-                let workoutData = doc.data();
-                // Check if we previously recorded a workout for the selected workoutType
-                if (workoutData[workoutType]) {
-                    // If there is a previously logged workout for the workoutType update the workoutInfo state object
-                    setWorkoutInfo(workoutData[workoutType])
-                }
-                else {
-                    // If we have not previously logged a workout for the selected workoutType
-                    // then set the workoutInfo state object to empty
-                    setWorkoutInfo(emptyWorkoutInfo.current);
-                }
+
+        if (prevWorkoutType.current !== workoutType) {
+            console.log(`using local data due to workoutType change`);
+            prevWorkoutType.current = workoutType;
+            if (workoutData.current[workoutType]) {
+                // If there is a previously logged workout for the workoutType update the workoutInfo state object
+                setWorkoutInfo(workoutData.current[workoutType])
             }
             else {
-                // If the doc we are looking for does not exist then workoutInfo should be empty
-                console.log(`no workout document for ${workoutDate}`)
+                // If we have not previously logged a workout for the selected workoutType
+                // then set the workoutInfo state object to empty
                 setWorkoutInfo(emptyWorkoutInfo.current);
             }
-        }).catch(function(error) {
-            console.log(`Error getting document: ${error}`)
-        });
+        }
+        else {
+            console.log(`querying Firestore due to date change`);
+            // Each day has a doc with the date as the id, given a change of date we need to fetch new data
+            firestore.collection("workouts").doc(workoutDate).get().then(function(doc) {
+                if (doc.exists) {
+                    workoutData.current = doc.data();
+                    // Check if we previously recorded a workout for the selected workoutType
+                    if (workoutData.current[workoutType]) {
+                        // If there is a previously logged workout for the workoutType update the workoutInfo state object
+                        setWorkoutInfo(workoutData.current[workoutType])
+                    }
+                    else {
+                        // If we have not previously logged a workout for the selected workoutType
+                        // then set the workoutInfo state object to empty
+                        setWorkoutInfo(emptyWorkoutInfo.current);
+                    }
+                }
+                else {
+                    // If the doc we are looking for does not exist then workoutInfo should be empty
+                    console.log(`no workout document for ${workoutDate}`)
+                    setWorkoutInfo(emptyWorkoutInfo.current);
+                }
+            }).catch(function(error) {
+                console.log(`Error getting document: ${error}`)
+            });
+        }
     }, [firestore, workoutDate, workoutType])
 
     const handleSubmit = (event) => {
@@ -69,6 +88,17 @@ function Admin() {
         }, {merge: true})
         .then(() => console.log("workout successfully added!"))
         .catch((error) => console.log(`Error writing workout document: ${error}`))
+
+        // Not only do we write to Firestore, but also we update the react state
+        workoutData.current[workoutType] = {
+            workoutType: workoutType,
+            warmUp: workoutInfo.warmUp || '',
+            skill: workoutInfo.skill || '',
+            strength: workoutInfo.strength || '',
+            coolDown: workoutInfo.coolDown || '',
+            workout: workoutInfo.workout,
+            workoutDate: workoutDate
+        }
     }
 
     const handleChange = e => {
