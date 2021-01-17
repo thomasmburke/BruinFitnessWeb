@@ -59,7 +59,9 @@ function Admin() {
                 else {
                     // If the doc we are looking for does not exist then workoutInfo should be empty
                     console.log(`no workout document for ${workoutDate}`)
+                    // TODO: this is not working as expected...
                     setWorkoutInfo(emptyWorkoutInfo.current);
+                    workoutData.current = emptyWorkoutInfo.current;
                 }
             }).catch(function(error) {
                 console.log(`Error getting document: ${error}`)
@@ -99,6 +101,7 @@ function Admin() {
             workout: workoutInfo.workout,
             workoutDate: workoutDate
         }
+        setWorkoutInfo(workoutData.current);
     }
 
     const handleChange = e => {
