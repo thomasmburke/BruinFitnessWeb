@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { FirebaseAppProvider } from "reactfire";
+import 'typeface-roboto';
 import App from "./App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
