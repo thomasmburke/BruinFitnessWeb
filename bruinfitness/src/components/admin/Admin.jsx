@@ -1,8 +1,10 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from 'react';
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { useFirestore } from "reactfire";
+import './Admin.css';
 
 function Admin() {
 
@@ -17,6 +19,9 @@ function Admin() {
     const [workoutType, setWorkoutType] = useState('Metcon');
     // Holds the meat of the workout programming
     const [workoutInfo, setWorkoutInfo] = useState(emptyWorkoutInfo.current)
+
+    const [fancySubmitClass, setFancySubmitClass] = useState('')
+    const isCheckHidden = useRef(true);
 
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
     const firestore = useFirestore();
@@ -101,7 +106,9 @@ function Admin() {
             workout: workoutInfo.workout,
             workoutDate: workoutDate
         }
-        setWorkoutInfo(workoutData.current);
+        setWorkoutInfo(workoutData.current[workoutType]);
+
+        fancySubmit();
     }
 
     const handleChange = e => {
@@ -114,6 +121,18 @@ function Admin() {
             ...prevWorkoutInfo,
             [name]: value
         }));
+    }
+
+    function fancySubmit(){
+        setFancySubmitClass('onSubmitBtnClick');
+        setTimeout(function(){
+            isCheckHidden.current = false;
+            setFancySubmitClass('submitBtnValidate');
+            setTimeout(function(){
+                isCheckHidden.current = true;
+                setFancySubmitClass('');
+            }, 1250)
+        }, 2250)
     }
 
     return (
@@ -160,9 +179,9 @@ function Admin() {
                         <Form.Label>WORKOUT</Form.Label>
                         <Form.Control as="textarea" rows={12} name="workout" required value={workoutInfo.workout} onChange={handleChange}/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div className="submitBtnContainer">
+                    <button  type="submit" className={`submitBtn ${fancySubmitClass}`}>{isCheckHidden.current ? "SUBMIT" : <FontAwesomeIcon icon={faCheck} color="white"/>}</button>
+                </div>
             </Form>
         </div>
     )
