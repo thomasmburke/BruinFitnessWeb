@@ -13,3 +13,28 @@
 #left-tabs-example-tab-fourth.nav-link {
     color: #039509;
 }
+
+.workout-tab-scrollbar {
+    position: relative;
+    padding-left: 1rem;
+    border-radius: 25px;
+    background-color:#343a40;
+    height: 400px;
+    overflow: auto;
+    border:8px solid #343a40;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+      0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  }
+  .workout-tab-wrapper-scroll-y {
+    display: block;
+  }
+
+.workout-content {
+    color: white;
+    font-size: small;
+}
+.workout-content-header {
+    font-size: medium;
+    color: white;
+    font-weight: bold;
+}

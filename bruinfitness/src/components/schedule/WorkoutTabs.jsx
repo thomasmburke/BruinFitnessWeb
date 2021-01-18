@@ -60,14 +60,18 @@ function WorkoutTabs() {
                     <Col sm={8}>
                     <Tab.Content>
                         <Tab.Pane eventKey="first">
-                            <div style={{whiteSpace: "pre-wrap"}}>
+                            <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
                             {showSpinner() && (
                                 <div className="spinner-border" role="status">
                                 <span className="sr-only">Loading...</span>
                                 </div>
                             )}
                             {!showSpinner() &&
-                                (<p>{workoutInfo['Metcon'].workout}</p>)}
+                                (<div>
+                                    <p className="workout-content-header">WORKOUT</p>
+                                    <p className="workout-content">{workoutInfo['Metcon'].workout}</p>
+                                </div>)
+                                }
                                 {/* may want pre-line instead */}
                                 {/* make text section a fixed size for certain screen sizes and potentially make it scrollable */}
                                 {/* {console.log(JSON.stringify(workoutInfo, null, 2))} */}
