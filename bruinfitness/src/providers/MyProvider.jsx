@@ -21,14 +21,14 @@ class MyProvider extends Component {
     let day = String(today.getDate());
     let month = String(today.getMonth() + 1); //January is 0!
     let year = String(today.getFullYear());
-    return `${year}_${month}_${day}`;
+    return `${year}-${month}-${day}`;
   }
 
   formatFirestoreDate(date) {
     let day = String(date.getDate());
     let month = String(date.getMonth() + 1); //January is 0!
     let year = String(date.getFullYear());
-    return `${year}_${month}_${day}`;
+    return `${year}-${month}-${day}`;
   }
 
   state = {
