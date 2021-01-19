@@ -68,6 +68,10 @@ function WorkoutTabs() {
                             )}
                             {!showSpinner() &&
                                 (<div>
+                                    <p className="workout-content-header">WARM UP</p>
+                                    <p className="workout-content">{workoutInfo['Metcon'].warmUp}</p>
+                                    <p className="workout-content-header">SKILL</p>
+                                    <p className="workout-content">{workoutInfo['Metcon'].skill}</p>
                                     <p className="workout-content-header">WORKOUT</p>
                                     <p className="workout-content">{workoutInfo['Metcon'].workout}</p>
                                 </div>)
