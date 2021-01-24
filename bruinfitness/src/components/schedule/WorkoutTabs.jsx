@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+// import { TabPane } from 'react-bootstrap';
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -60,27 +61,7 @@ function WorkoutTabs() {
                     <Col sm={8}>
                     <Tab.Content>
                         <Tab.Pane eventKey="first">
-                            <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
-                            {showSpinner() && (
-                                <div className="spinner-border" role="status">
-                                <span className="sr-only">Loading...</span>
-                                </div>
-                            )}
-                            {!showSpinner() &&
-                                (<div>
-                                    <p className="workout-content-header">WARM UP</p>
-                                    <p className="workout-content">{workoutInfo['Metcon'].warmUp}</p>
-                                    <p className="workout-content-header">SKILL</p>
-                                    <p className="workout-content">{workoutInfo['Metcon'].skill}</p>
-                                    <p className="workout-content-header">WORKOUT</p>
-                                    <p className="workout-content">{workoutInfo['Metcon'].workout}</p>
-                                </div>)
-                                }
-                                {/* may want pre-line instead */}
-                                {/* make text section a fixed size for certain screen sizes and potentially make it scrollable */}
-                                {/* {console.log(JSON.stringify(workoutInfo, null, 2))} */}
-                                {/* {workoutInfo !== undefined && workoutInfo['Metcon'] !== undefined && (<p>{workoutInfo['Metcon'].workout}</p>)} */}
-                            </div>
+                            <TabPane workoutInfo={workoutInfo} />
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
                         </Tab.Pane>
@@ -92,6 +73,41 @@ function WorkoutTabs() {
             </Tab.Container> 
         </div>
     )
+}
+
+const TabPane = ({workoutInfo}) => {
+
+    const showSpinner = () => {
+        if (workoutInfo !== undefined && workoutInfo['Metcon'] !== undefined){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    function buildTabPane(workoutInfo){
+        return (
+        <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
+            {showSpinner() && (
+                <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+                </div>
+            )}
+            {!showSpinner() &&
+                (<div>
+                    <p className="workout-content-header">WARM UP</p>
+                    <p className="workout-content">{workoutInfo['Metcon'].warmUp}</p>
+                    <p className="workout-content-header">SKILL</p>
+                    <p className="workout-content">{workoutInfo['Metcon'].skill}</p>
+                    <p className="workout-content-header">WORKOUT</p>
+                    <p className="workout-content">{workoutInfo['Metcon'].workout}</p>
+                </div>)
+                }
+            </div>
+        );
+    }
+
+    return (<React.Fragment>{buildTabPane(workoutInfo)}</React.Fragment>);
 }
 
 export default WorkoutTabs
