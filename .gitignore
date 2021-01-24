@@ -1,6 +1,7 @@
 
 # VS code artifacts
 bruin-fitness/.vscode/
+bruinfitness/.vscode/
 
 # Logs
 #
@@ -114,6 +115,10 @@ bruin-fitness/.firebase
 bruin-fitness/node_modules
 bruin-fitness/firebase-debug.log
 bruin-fitness/functions/node_modules
-
+bruinfitness/.firebaserc
+bruinfitness/.firebase
+bruinfitness/node_modules
+bruinfitness/firebase-debug.log
+bruinfitness/functions/node_modules
 #Mac
 .DS_Store
