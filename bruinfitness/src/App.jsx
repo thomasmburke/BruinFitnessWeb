@@ -18,12 +18,10 @@ import MyProvider from "./providers/MyProvider";
 function App() {
   return (
     <MyProvider>
-      {/* <React.Fragment> */}
       <div className="content-holder">
         <NavigationBar />
         <div className="content">
         <Router>
-          {/* <div className="app"> */}
             <Switch>
               <Route path="/about">
                 <About />
@@ -54,12 +52,10 @@ function App() {
                 <Home />
               </Route>
             </Switch>
-          {/* </div> */}
         </Router>
         </div>
         <Footer />
       </div>
-      {/* </React.Fragment> */}
     </MyProvider>
   );
 }
