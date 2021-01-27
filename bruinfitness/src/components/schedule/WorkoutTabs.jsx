@@ -61,7 +61,7 @@ function WorkoutTabs() {
                     <Col sm={8}>
                     <Tab.Content>
                         <Tab.Pane eventKey="first">
-                            <TabPane workoutInfo={workoutInfo} />
+                            <TabPane workoutType="Metcon" workoutInfo={workoutInfo} />
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
                         </Tab.Pane>
@@ -75,39 +75,62 @@ function WorkoutTabs() {
     )
 }
 
-const TabPane = ({workoutInfo}) => {
+const TabPane = ({workoutType, workoutInfo}) => {
+
+    const workoutHeaderMap = {warmUp: "WARM UP", skill: "SKILL", strength: "STRENGTH", coolDown: "COOL DOWN", workout: "WORKOUT"}
+    const workoutHeaderList = ["warmUp", "skill", "strength", "workout", "coolDown"]
 
     const showSpinner = () => {
-        if (workoutInfo !== undefined && workoutInfo['Metcon'] !== undefined){
+        if (workoutInfo !== undefined && workoutInfo[workoutType] !== undefined){
             return false
         } else {
             return true
         }
     }
 
-    function buildTabPane(workoutInfo){
+    function buildTabPane(){
         return (
         <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
+            {console.log(workoutInfo)}
             {showSpinner() && (
                 <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
                 </div>
             )}
             {!showSpinner() &&
-                (<div>
-                    <p className="workout-content-header">WARM UP</p>
-                    <p className="workout-content">{workoutInfo['Metcon'].warmUp}</p>
-                    <p className="workout-content-header">SKILL</p>
-                    <p className="workout-content">{workoutInfo['Metcon'].skill}</p>
-                    <p className="workout-content-header">WORKOUT</p>
-                    <p className="workout-content">{workoutInfo['Metcon'].workout}</p>
-                </div>)
+                buildTabPaneContent()
                 }
             </div>
         );
     }
 
-    return (<React.Fragment>{buildTabPane(workoutInfo)}</React.Fragment>);
+    function buildTabPaneContent(){
+        return (
+        <div>
+            {workoutHeaderList.map(workoutHeader => {
+                console.log(`workoutHeader: ${workoutHeader}`)
+                console.log(`workoutIndex: ${workoutInfo[workoutType][workoutHeader]}`)
+                if (workoutInfo[workoutType][workoutHeader]) {
+                    console.log(`made it here with: ${workoutHeader}`)
+                    return (
+                        <React.Fragment key={workoutHeader}>
+                        <p className="workout-content-header">{camelToUpperSentenceCase(workoutHeader)}</p>
+                        <p className="workout-content">{workoutInfo[workoutType][workoutHeader]}</p>
+                        </React.Fragment>
+                    )
+                }
+                // make eslint happy with a return for null workout content
+                return null
+            })}
+        </div>
+        )
+    }
+
+    function camelToUpperSentenceCase(text){
+        return text.replace( /([A-Z])/g, " $1" ).toUpperCase();
+    }
+
+    return (<React.Fragment>{buildTabPane()}</React.Fragment>);
 }
 
 export default WorkoutTabs
