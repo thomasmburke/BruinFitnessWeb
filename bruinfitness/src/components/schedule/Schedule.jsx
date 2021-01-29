@@ -18,10 +18,10 @@ function Schedule() {
       <AuthCheck >
         {/* <Container> */}
           <Row>
-            <Col>
+            <Col xs={12} md={6}>
               <ReservationTable />
             </Col>
-            <Col>
+            <Col xs={12} md={6}>
               <WorkoutTabs />
             </Col>
           </Row>
