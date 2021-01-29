@@ -2,10 +2,22 @@
     background-color: #039509;
     color: white;
     font-weight: 600;
+    text-align: center;
+    padding: 19.2px;
 }
 
 .workout-pill.nav-link {
     color: #039509;
+    text-align: center;
+    padding: 19.2px;
+}
+
+.workout-tab-flex-column {
+    flex-direction: column;
+}
+
+.workout-tab-row {
+    margin-top: 2rem;
 }
 
 .workout-tab-scrollbar {

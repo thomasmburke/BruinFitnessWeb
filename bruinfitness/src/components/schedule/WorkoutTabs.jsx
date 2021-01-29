@@ -20,19 +20,20 @@ function WorkoutTabs() {
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
     const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
 
-    // const showSpinner = workoutInfo !== undefined ;
+    const showSpinner = workoutInfo ? false : true;
 
     return (
         <div>
             <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
-                <Row>
+                {/* no margin top needed on bigger screens, but margin top required on smaller screens for when the COLs are stacked */}
+                <Row className="mt-4 mt-md-0">
                     <Col sm={4}>
-                    <Nav variant="pills" className="flex-column">
+                    <Nav variant="pills" className="workout-tab-flex-column">
                         {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
                             if (workoutInfo[workoutTypeHeader]) {
                                 console.debug(`workout pill for : ${workoutTypeHeader}`);
                                 return (
-                                    <Nav.Item>
+                                    <Nav.Item key={workoutTypeHeader}>
                                         <Nav.Link className="workout-pill" eventKey={workoutTypeHeader}>{workoutTypeHeader}</Nav.Link>
                                     </Nav.Item>
                                 )
@@ -43,11 +44,16 @@ function WorkoutTabs() {
                     </Col>
                     <Col sm={8}>
                     <Tab.Content>
-                        {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
+                        {showSpinner && (
+                            <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                            </div>
+                        )}
+                        {!showSpinner && workoutTypeHeaders.map((workoutTypeHeader) => {
                             if (workoutInfo[workoutTypeHeader]) {
                                 console.debug(`adding TabPane for : ${workoutTypeHeader}`)
                                 return (
-                                    <Tab.Pane eventKey={workoutTypeHeader}>
+                                    <Tab.Pane eventKey={workoutTypeHeader} key={workoutTypeHeader}>
                                         <TabPane workoutType={workoutTypeHeader} workoutInfo={workoutInfo} />
                                     </Tab.Pane>
                                 )
