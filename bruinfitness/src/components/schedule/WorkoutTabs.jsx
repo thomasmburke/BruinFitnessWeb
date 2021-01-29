@@ -18,15 +18,16 @@ function WorkoutTabs() {
     // const [workoutInfo, setWorkoutInfo] = useState();
     const workoutRef = firestore.collection('workouts').doc('2021-01-15')
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
+    const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
 
     const showSpinner = () => {
-        if (workoutInfo !== undefined && workoutInfo['Metcon'] !== undefined){
+        if (workoutInfo !== undefined){
             return false
         } else {
             return true
         }
     }
-    // const showSpinner = workoutInfo !== undefined && workoutInfo['Metcon'] !== undefined;
+    // const showSpinner = workoutInfo !== undefined ;
 
     // useEffect(() => {
     //     firestore.collection("workouts").doc('2021-01-15').get().then(function(doc) {
@@ -43,30 +44,43 @@ function WorkoutTabs() {
 
     return (
         <div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Tab.Container id="workout-tabs" defaultActiveKey="Metcon">
                 <Row>
                     <Col sm={4}>
                     <Nav variant="pills" className="flex-column">
                         <Nav.Item>
-                        <Nav.Link eventKey="first">Metcon</Nav.Link>
+                        <Nav.Link className="workout-pill" eventKey="Metcon">Metcon</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                        <Nav.Link eventKey="second">Weightlifting</Nav.Link>
+                        <Nav.Link className="workout-pill" eventKey="Weightlifting">Weightlifting</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                        <Nav.Link eventKey="third">Kettlebell</Nav.Link>
+                        <Nav.Link className="workout-pill" eventKey="Mobility">Mobility</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     </Col>
                     <Col sm={8}>
                     <Tab.Content>
-                        <Tab.Pane eventKey="first">
+                        {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
+                            if (workoutInfo[workoutTypeHeader]) {
+                                console.log(`adding TabPane for : ${workoutTypeHeader}`)
+                                return (
+                                    <Tab.Pane eventKey={workoutTypeHeader}>
+                                        <TabPane workoutType={workoutTypeHeader} workoutInfo={workoutInfo} />
+                                    </Tab.Pane>
+                                )
+                            }
+                            return null
+                        })}
+                        {/* <Tab.Pane eventKey="first">
                             <TabPane workoutType="Metcon" workoutInfo={workoutInfo} />
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
+                            <TabPane workoutType="Weightlifting" workoutInfo={workoutInfo} />
                         </Tab.Pane>
                         <Tab.Pane eventKey="third">
-                        </Tab.Pane>
+                            <TabPane workoutType="Mobility" workoutInfo={workoutInfo} />
+                        </Tab.Pane> */}
                     </Tab.Content>
                     </Col>
                 </Row>
@@ -77,7 +91,6 @@ function WorkoutTabs() {
 
 const TabPane = ({workoutType, workoutInfo}) => {
 
-    const workoutHeaderMap = {warmUp: "WARM UP", skill: "SKILL", strength: "STRENGTH", coolDown: "COOL DOWN", workout: "WORKOUT"}
     const workoutHeaderList = ["warmUp", "skill", "strength", "workout", "coolDown"]
 
     const showSpinner = () => {
@@ -111,7 +124,7 @@ const TabPane = ({workoutType, workoutInfo}) => {
                 console.log(`workoutHeader: ${workoutHeader}`)
                 console.log(`workoutIndex: ${workoutInfo[workoutType][workoutHeader]}`)
                 if (workoutInfo[workoutType][workoutHeader]) {
-                    console.log(`made it here with: ${workoutHeader}`)
+                    console.log(`adding TabPane content for: ${workoutHeader}`)
                     return (
                         <React.Fragment key={workoutHeader}>
                         <p className="workout-content-header">{camelToUpperSentenceCase(workoutHeader)}</p>
