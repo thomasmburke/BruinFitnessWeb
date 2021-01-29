@@ -20,50 +20,32 @@ function WorkoutTabs() {
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
     const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
 
-    const showSpinner = () => {
-        if (workoutInfo !== undefined){
-            return false
-        } else {
-            return true
-        }
-    }
     // const showSpinner = workoutInfo !== undefined ;
-
-    // useEffect(() => {
-    //     firestore.collection("workouts").doc('2021-01-15').get().then(function(doc) {
-    //         if (doc.exists) {
-    //             setWorkoutInfo(doc.data());
-    //         }
-    //         else {
-    //             console.log(`no workout document`)
-    //         }
-    //     }).catch(function(error) {
-    //         console.log(`Error getting document: ${error}`)
-    //     });
-    // }, [firestore])
 
     return (
         <div>
-            <Tab.Container id="workout-tabs" defaultActiveKey="Metcon">
+            <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
                 <Row>
                     <Col sm={4}>
                     <Nav variant="pills" className="flex-column">
-                        <Nav.Item>
-                        <Nav.Link className="workout-pill" eventKey="Metcon">Metcon</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link className="workout-pill" eventKey="Weightlifting">Weightlifting</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link className="workout-pill" eventKey="Mobility">Mobility</Nav.Link>
-                        </Nav.Item>
+                        {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
+                            if (workoutInfo[workoutTypeHeader]) {
+                                console.debug(`workout pill for : ${workoutTypeHeader}`);
+                                return (
+                                    <Nav.Item>
+                                        <Nav.Link className="workout-pill" eventKey={workoutTypeHeader}>{workoutTypeHeader}</Nav.Link>
+                                    </Nav.Item>
+                                )
+                            }
+                            return null
+                        })}
                     </Nav>
                     </Col>
                     <Col sm={8}>
                     <Tab.Content>
                         {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
                             if (workoutInfo[workoutTypeHeader]) {
-                                console.log(`adding TabPane for : ${workoutTypeHeader}`)
+                                console.debug(`adding TabPane for : ${workoutTypeHeader}`)
                                 return (
                                     <Tab.Pane eventKey={workoutTypeHeader}>
                                         <TabPane workoutType={workoutTypeHeader} workoutInfo={workoutInfo} />
@@ -72,15 +54,6 @@ function WorkoutTabs() {
                             }
                             return null
                         })}
-                        {/* <Tab.Pane eventKey="first">
-                            <TabPane workoutType="Metcon" workoutInfo={workoutInfo} />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="second">
-                            <TabPane workoutType="Weightlifting" workoutInfo={workoutInfo} />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="third">
-                            <TabPane workoutType="Mobility" workoutInfo={workoutInfo} />
-                        </Tab.Pane> */}
                     </Tab.Content>
                     </Col>
                 </Row>
@@ -104,7 +77,6 @@ const TabPane = ({workoutType, workoutInfo}) => {
     function buildTabPane(){
         return (
         <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
-            {console.log(workoutInfo)}
             {showSpinner() && (
                 <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
@@ -121,10 +93,10 @@ const TabPane = ({workoutType, workoutInfo}) => {
         return (
         <div>
             {workoutHeaderList.map(workoutHeader => {
-                console.log(`workoutHeader: ${workoutHeader}`)
-                console.log(`workoutIndex: ${workoutInfo[workoutType][workoutHeader]}`)
+                console.debug(`workoutHeader: ${workoutHeader}`)
+                console.debug(`workoutIndex: ${workoutInfo[workoutType][workoutHeader]}`)
                 if (workoutInfo[workoutType][workoutHeader]) {
-                    console.log(`adding TabPane content for: ${workoutHeader}`)
+                    console.debug(`adding TabPane content for: ${workoutHeader}`)
                     return (
                         <React.Fragment key={workoutHeader}>
                         <p className="workout-content-header">{camelToUpperSentenceCase(workoutHeader)}</p>
