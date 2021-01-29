@@ -107,7 +107,7 @@ function ReservationTable() {
       <table className="table table-bordered table-hover table-sm">
         <thead className="thead-dark">
           <tr>
-            <th colSpan="3">{context.state.scheduleDate} Classes</th>
+            <th colSpan="2">{context.state.scheduleDate} Classes</th>
           </tr>
         </thead>
         <tbody>
@@ -149,7 +149,7 @@ const TableBody = ({
     if (row["reservedUsers"].includes(userId)) {
       // If they are in the class we need to allow them to leave the class if they can't make it
       return (
-        <div className="col-md-4">
+        <div className="col-md-6">
           <button
             className="btn btn-secondary btn-sm"
             onClick={() => removeReservation(row)}
@@ -170,7 +170,7 @@ const TableBody = ({
       if (row["reservationCnt"] < 12) {
         // If they are not in the class and there are still spaces available then prompt them with a button to reserve a spot
         return (
-          <div className="col-md-4">
+          <div className="col-md-6">
             <button
               className="btn btn-primary btn-sm"
               onClick={() => incrementReservation(row["id"])}
@@ -184,7 +184,7 @@ const TableBody = ({
       } else {
         return (
           // If they are not in the class and the class is full we remove the button and mark it as full
-          <div className="col-md-4">Class Full</div>
+          <div className="col-md-6">Class Full</div>
         );
       }
     }
@@ -207,7 +207,7 @@ const TableBody = ({
               {value === "workoutType" && (
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-8 vcenter">{row[value]}</div>
+                    <div className="col-md-6 vcenter">{row[value]}</div>
                     {buildReservationButton(row)}
                   </div>
                 </div>
