@@ -3,21 +3,17 @@
     color: white;
     font-weight: 600;
     text-align: center;
-    padding: 19.2px;
+    padding: 1rem;
 }
 
 .workout-pill.nav-link {
     color: #039509;
     text-align: center;
-    padding: 19.2px;
+    padding: 1rem;
 }
 
 .workout-tab-flex-column {
     flex-direction: column;
-}
-
-.workout-tab-row {
-    margin-top: 2rem;
 }
 
 .workout-tab-scrollbar {

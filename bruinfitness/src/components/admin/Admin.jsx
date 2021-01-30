@@ -64,7 +64,6 @@ function Admin() {
                 else {
                     // If the doc we are looking for does not exist then workoutInfo should be empty
                     console.log(`no workout document for ${workoutDate}`)
-                    // TODO: this is not working as expected...
                     setWorkoutInfo(emptyWorkoutInfo.current);
                     workoutData.current = emptyWorkoutInfo.current;
                 }

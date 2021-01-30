@@ -26,8 +26,8 @@ function WorkoutTabs() {
         <div>
             <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
                 {/* no margin top needed on bigger screens, but margin top required on smaller screens for when the COLs are stacked */}
-                <Row className="mt-4 mt-md-0">
-                    <Col sm={4}>
+                <Row className="mt-4 mt-lg-0">
+                    <Col sm={4} >
                     <Nav variant="pills" className="workout-tab-flex-column">
                         {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
                             if (workoutInfo[workoutTypeHeader]) {
