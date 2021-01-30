@@ -10,6 +10,13 @@
     color: #039509;
     text-align: center;
     padding: 1rem;
+    margin: auto;
+}
+
+.workout-pill.nav-link:focus, .workout-pill.nav-link:visited, .workout-pill.nav-link:active
+{
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .workout-tab-flex-column {

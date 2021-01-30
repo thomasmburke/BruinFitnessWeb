@@ -33,7 +33,7 @@ function WorkoutTabs() {
                             if (workoutInfo[workoutTypeHeader]) {
                                 console.debug(`workout pill for : ${workoutTypeHeader}`);
                                 return (
-                                    <Nav.Item key={workoutTypeHeader}>
+                                    <Nav.Item key={workoutTypeHeader} className="mx-0 mx-md-2">
                                         <Nav.Link className="workout-pill" eventKey={workoutTypeHeader}>{workoutTypeHeader}</Nav.Link>
                                     </Nav.Item>
                                 )
@@ -82,7 +82,7 @@ const TabPane = ({workoutType, workoutInfo}) => {
 
     function buildTabPane(){
         return (
-        <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar" style={{whiteSpace: "pre-wrap"}}>
+        <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar mt-3 mt-sm-0" style={{whiteSpace: "pre-wrap"}}>
             {showSpinner() && (
                 <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
