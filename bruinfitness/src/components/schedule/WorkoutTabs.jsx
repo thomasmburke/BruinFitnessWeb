@@ -14,9 +14,9 @@ function WorkoutTabs() {
     // This context object holds the state from the DatePicker component which sets the date
     const context = useContext(MyContext);
     
-    // Holds the meat of the workout programming
-    // const [workoutInfo, setWorkoutInfo] = useState();
-    const workoutRef = firestore.collection('workouts').doc('2021-01-15')
+    // const workoutRef = firestore.collection('workouts').doc('2021-01-15')
+    console.log(`date!: ${context.state.firestoreDate}`)
+    const workoutRef = firestore.collection('workouts').doc(context.state.firestoreDate);
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
     const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
 
