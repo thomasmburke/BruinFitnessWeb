@@ -18,15 +18,17 @@ class MyProvider extends Component {
 
   getTodaysFirestoreDateString() {
     let today = new Date();
-    let day = String(today.getDate());
-    let month = String(today.getMonth() + 1); //January is 0!
+    // Add 0 to the string and then take the last 2 digits e.g. 0+9 -> 09 & 0+10 -> 10
+    let day = ('0' + String(today.getDate())).slice(-2);
+    let month = ('0' + String(today.getMonth() + 1)).slice(-2); //January is 0!
     let year = String(today.getFullYear());
     return `${year}-${month}-${day}`;
   }
 
   formatFirestoreDate(date) {
-    let day = String(date.getDate());
-    let month = String(date.getMonth() + 1); //January is 0!
+    // Add 0 to the string and then take the last 2 digits e.g. 0+9 -> 09 & 0+10 -> 10
+    let day = ('0' + String(date.getDate())).slice(-2);
+    let month = ('0' + String(date.getMonth() + 1)).slice(-2); //January is 0!
     let year = String(date.getFullYear());
     return `${year}-${month}-${day}`;
   }
