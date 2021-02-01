@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-// import { TabPane } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { useFirestore, useFirestoreDocDataOnce } from "reactfire";
 import { MyContext } from "../../providers/MyProvider";
+import WebPageHeader from "../common/WebPageHeader";
 import "./WorkoutTabs.css";
 
 function WorkoutTabs() {
@@ -13,17 +13,25 @@ function WorkoutTabs() {
     const firestore = useFirestore();
     // This context object holds the state from the DatePicker component which sets the date
     const context = useContext(MyContext);
-    
-    // const workoutRef = firestore.collection('workouts').doc('2021-01-15')
-    console.log(`date!: ${context.state.firestoreDate}`)
     const workoutRef = firestore.collection('workouts').doc(context.state.firestoreDate);
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
     const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
+    const [isDesktop, setDesktop] = useState(window.innerWidth >= 576);
 
     const showSpinner = workoutInfo ? false : true;
 
+    const updateMedia = () => {
+        setDesktop(window.innerWidth >= 576);
+      };
+
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+      });
+
     return (
         <div>
+            {!isDesktop && <WebPageHeader header="Programming" additionalClassNames="remove-bottom-spacing"/>}
             <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
                 {/* no margin top needed on bigger screens, but margin top required on smaller screens for when the COLs are stacked */}
                 <Row className="mt-4 mt-lg-0">
@@ -43,6 +51,7 @@ function WorkoutTabs() {
                     </Nav>
                     </Col>
                     <Col sm={8}>
+                        {isDesktop && <WebPageHeader header="Programming" />}
                     <Tab.Content>
                         {showSpinner && (
                             <div className="spinner-border" role="status">
