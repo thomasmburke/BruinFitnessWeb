@@ -3,6 +3,10 @@
 - make admin nav item appear for admins
 - create admin error component
 - Ensure there is an alert sent to an admin if one of the next 3 days doesn't have workout programming assigned to it yet
+WorkoutTab bugs and action items:
+- WorkoutTab defaults to selecting metcon, might want this to be more sophisticated
+- if a workout tab is selected and the date changes and that workout type doesn't exists than nothing is selected
+- If there is no workouts for a day then it is just blank, this should probably say something like "Sorry, no workout programming added yet for {day}"
 
 
 Data Model:
