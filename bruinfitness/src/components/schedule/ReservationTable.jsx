@@ -107,10 +107,10 @@ function ReservationTable() {
       <table className="table table-bordered table-hover table-sm">
         <thead className="thead-dark">
           <tr>
-            <th colSpan="2">{context.state.scheduleDate} Classes</th>
+            <th className="th-z-index" colSpan="2">{context.state.scheduleDate} Classes</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tbody-hover-control table-dark">
           {reservationData.data && reservationData.data.map((data) => {
             return <TableBody
               key={data.id}
@@ -199,7 +199,7 @@ const TableBody = ({
     */
     return (
       // Wonky way of creating a unique key per row, but works for now
-      <tr key={row["workoutType"] + row["time"]}>
+      <tr className="tr-hover-control" key={row["workoutType"] + row["time"]}>
         {headers.map((value, index) => {
           return (
             <td key={index}>
@@ -225,7 +225,7 @@ const TableBody = ({
   return (
     <React.Fragment>
       {showSpinner && (
-        <tr key="spinner-0">
+        <tr className="tr-hover-control" key="spinner-0">
           <td colSpan={columns} className="text-center">
             <div className="spinner-border" role="status">
               <span className="sr-only">Loading...</span>

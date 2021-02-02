@@ -78,7 +78,7 @@ const TableBody = (props) => {
   function buildRow(row, headers) {
     return (
       // Wonky way of creating a unique key per row, but works for now
-      <tr key={row["Workout Type"] + row["Day"] + row["Time"]}>
+      <tr className="tr-hover-control" key={row["Workout Type"] + row["Day"] + row["Time"]}>
         {headers.map((value, index) => {
           return <td key={index}>{row[value]}</td>;
         })}
@@ -87,9 +87,9 @@ const TableBody = (props) => {
   }
 
   return (
-    <tbody>
+    <tbody className="table-bordered table-dark tbody-hover-control">
       {showSpinner && (
-        <tr key="spinner-0">
+        <tr className="tr-hover-control" key="spinner-0">
           <td colSpan={columns} className="text-center">
             <div className="spinner-border" role="status">
               <span className="sr-only">Loading...</span>
