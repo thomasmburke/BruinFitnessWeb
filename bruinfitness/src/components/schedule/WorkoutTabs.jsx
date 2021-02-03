@@ -8,6 +8,10 @@ import { MyContext } from "../../providers/MyProvider";
 import WebPageHeader from "../common/WebPageHeader";
 import "./WorkoutTabs.css";
 
+// Assumption made by this component is there will always be a Metcon on everyday
+// If there is not then no workout tab will be selected by default and
+// The Oops! no workouts uploaded message will surface
+
 function WorkoutTabs() {
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
     const firestore = useFirestore();
@@ -52,6 +56,7 @@ function WorkoutTabs() {
                     </Col>
                     <Col sm={8}>
                         {isDesktop && <WebPageHeader header="Programming" />}
+                        {workoutInfo && !workoutInfo['Metcon'] && <p className="text-center">Oops, no workout progamming uploaded yet for {context.state.scheduleDate}!</p>}
                     <Tab.Content>
                         {showSpinner && (
                             <div className="spinner-border" role="status">
