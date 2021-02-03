@@ -17,17 +17,25 @@ function WorkoutTabs() {
     const firestore = useFirestore();
     // This context object holds the state from the DatePicker component which sets the date
     const context = useContext(MyContext);
+    // Dynamically set Firestore ref based off the workout date selected by the date picker
     const workoutRef = firestore.collection('workouts').doc(context.state.firestoreDate);
+    // Collect workout data for a given date
     const {data: workoutInfo} = useFirestoreDocDataOnce(workoutRef);
+    // List of all the workout types expected to be run by the gym
+    // if a workout type in the DB is not listed here then it will not be shown, 
+    // this is controlled by a dropdown in the worlout addition form
     const workoutTypeHeaders = ['Metcon', 'Weightlifting', 'Mobility', 'Endurance', 'Kettlebell']
+    // state variable that informs the component of the screen size
     const [isDesktop, setDesktop] = useState(window.innerWidth >= 576);
-
+    // While waiting for a response from our DB we show a spinner
     const showSpinner = workoutInfo ? false : true;
 
+    // If the screen is resized we update the isDesktop component state variable
     const updateMedia = () => {
         setDesktop(window.innerWidth >= 576);
       };
 
+    // componentDidMount and componentDidUpdate for screen resizings
     useEffect(() => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
@@ -35,12 +43,14 @@ function WorkoutTabs() {
 
     return (
         <div>
+            {/* Depending on the screen size the header is located in a different position */}
             {!isDesktop && <WebPageHeader header="Programming" additionalClassNames="remove-bottom-spacing"/>}
             <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
                 {/* no margin top needed on bigger screens, but margin top required on smaller screens for when the COLs are stacked */}
                 <Row className="mt-4 mt-lg-0">
                     <Col sm={4} >
                     <Nav variant="pills" className="workout-tab-flex-column">
+                        {/* Iterate through the different workoutTypes for a given day and create pills for them */}
                         {workoutInfo && workoutTypeHeaders.map((workoutTypeHeader) => {
                             if (workoutInfo[workoutTypeHeader]) {
                                 console.debug(`workout pill for : ${workoutTypeHeader}`);
@@ -55,9 +65,12 @@ function WorkoutTabs() {
                     </Nav>
                     </Col>
                     <Col sm={8}>
+                        {/* Depending on the screen size the header is located in a different position */}
                         {isDesktop && <WebPageHeader header="Programming" />}
+                        {/* Hacky check to see if workout data has been uploaded for a day if not we inform the user */}
                         {workoutInfo && !workoutInfo['Metcon'] && <p className="text-center">Oops, no workout progamming uploaded yet for {context.state.scheduleDate}!</p>}
                     <Tab.Content>
+                        {/* Dynamically add the workout programming content for each workoutType */}
                         {showSpinner && (
                             <div className="spinner-border" role="status">
                             <span className="sr-only">Loading...</span>
@@ -96,6 +109,7 @@ const TabPane = ({workoutType, workoutInfo}) => {
 
     function buildTabPane(){
         return (
+            // prewrap is responsible for turning \n's into newlines
         <div className="workout-tab-wrapper-scroll-y workout-tab-scrollbar mt-3 mt-sm-0" style={{whiteSpace: "pre-wrap"}}>
             {showSpinner() && (
                 <div className="spinner-border" role="status">
