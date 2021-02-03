@@ -27,6 +27,11 @@ function Schedule() {
             </Col>
           </Row>
       </AuthCheck>
+      <WebPageHeader header="Upcoming Holiday Hours" />
+      <p className="text-center">12/24 Christmas Eve: 8am - 12pm</p>
+      <p className="text-center">12/25 Christmas: 8am - 12pm</p>
+      <p className="text-center">12/31 New Years Eve: 8am - 12pm</p>
+      <p className="text-center">01/01 New Years: 12pm - 6pm</p>
       <CalloutText />
     </div>
   );
