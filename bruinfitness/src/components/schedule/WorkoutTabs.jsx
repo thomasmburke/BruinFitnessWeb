@@ -11,6 +11,7 @@ import "./WorkoutTabs.css";
 // Assumption made by this component is there will always be a Metcon on everyday
 // If there is not then no workout tab will be selected by default and
 // The Oops! no workouts uploaded message will surface
+// Also that workoutTypeHeaders captures all workoutTypes listed in the DB
 
 function WorkoutTabs() {
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton

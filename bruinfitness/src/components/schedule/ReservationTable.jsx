@@ -9,17 +9,25 @@ import "./ReservationTable.css";
 function ReservationTable() {
   // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
   const firestore = useFirestore();
-  // Get a reference to the schedule collection for the currently selected date
-  // TODO: switch to the reservationsRef below when there is enough data and I am done testing
-  const reservationRef = firestore.collection(
-    "schedules/Redwood City/dates/2021-01-15/classes"
-  ).orderBy('time', 'asc');
-  // Can't use .doc() after .orderBy() is applied to a collectionRef
-  const unorderedResevationRef = firestore.collection(
-    "schedules/Redwood City/dates/2021-01-15/classes"
-  );
   // This context object holds the state from the DatePicker component which sets the date
   const context = useContext(MyContext);
+   // Can't use .doc() after .orderBy() is applied to a collectionRef
+  //  const unorderedResevationRef = firestore.collection(
+  //   "schedules/Redwood City/dates/2021-01-15/classes"
+  // );
+   // Get a reference to the schedule collection for the currently selected date
+  // TODO: switch to the reservationsRef below when there is enough data and I am done testing
+  // const reservationRef = firestore.collection(
+  //   "schedules/Redwood City/dates/2021-01-15/classes"
+  // ).orderBy('time', 'asc');
+  const reservationRef = firestore.collection(
+    `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
+  ).orderBy('time', 'asc');
+  // Soon to be used when testing is over and reservation info is added daily/weekly
+  // Verified that this updates when the datepicker date is changed
+  const unorderedResevationRef = firestore.collection(
+    `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
+  );
   // This is adding a snapshot listener to this collection in React's useEffect method
   // under the hood. This removes the need for a `setReservationData` method call.
   // The idField param is what sets the doc.id value equal to the document's id, o/w it is not there by default
@@ -28,11 +36,6 @@ function ReservationTable() {
   const reservationData = useFirestoreCollectionData(reservationRef, { idField: 'id' });
   // Of the documents keys, these are the ones we want as columns in the table
   const headers = ["time", "workoutType"];
-  // Soon to be used when testing is over and reservation info is added daily/weekly
-  // Verified that this updates when the datepicker date is changed
-  const reservationsRef = firestore.collection(
-    `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
-  );
   // Subscribe to auth updates (i.e. onAuthStateChanged())
   const { data: user } = useUser();
 
@@ -103,27 +106,37 @@ function ReservationTable() {
   }
 
   return (
-    <div className="table-wrapper-scroll-y reservation-table-scrollbar">
-      <table className="table table-bordered table-hover table-sm">
-        <thead className="thead-dark">
-          <tr>
-            <th className="th-z-index" colSpan="2">{context.state.scheduleDate} Classes</th>
-          </tr>
-        </thead>
-        <tbody className="tbody-hover-control table-dark">
-          {reservationData.data && reservationData.data.map((data) => {
-            return <TableBody
-              key={data.id}
-              headers={headers}
-              reservationData={data}
-              userId={user.uid}
-              incrementReservation={incrementReservation}
-              removeReservation={removeReservation} />
-          }
-          )}
-        </tbody>
-      </table>
-    </div>
+    <React.Fragment>
+      {reservationData.data 
+      ? (
+        <div className="table-wrapper-scroll-y reservation-table-scrollbar">
+          <table className="table table-bordered table-hover table-sm">
+            <thead className="thead-dark">
+              <tr>
+                <th className="th-z-index" colSpan="2">{context.state.scheduleDate} Classes</th>
+              </tr>
+            </thead>
+            <tbody className="tbody-hover-control table-dark">
+              {reservationData.data.map((data) => {
+                return <TableBody
+                  key={data.id}
+                  headers={headers}
+                  reservationData={data}
+                  userId={user.uid}
+                  incrementReservation={incrementReservation}
+                  removeReservation={removeReservation} />
+              }
+              )}
+            </tbody> 
+          </table>
+        </div>
+        ) : 
+        (
+          <div className="text-center">
+          <p>Oops, no classes uploaded yet for {context.state.scheduleDate}! </p>
+          </div>
+        )}
+    </React.Fragment>
   );
 }
 
