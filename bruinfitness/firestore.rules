@@ -4,11 +4,9 @@ service cloud.firestore {
     match /schedules/San%20Leandro/schedule/{item} {
       allow read: if true;
     }
-    match /schedules/Redwood%20City/dates/2020_12_13/classes/{item} {
-    	allow read: if true;
-      allow write: if true;
-    }
-    match /schedules/Redwood%20City/dates/2021-01-15/classes/{item} {
+    // Matches any document in the dates collection as well as any document
+    // in a subcollection.
+    match /schedules/Redwood%20City/dates/{document=**} {
     	allow read: if true;
       allow write: if true;
     }
