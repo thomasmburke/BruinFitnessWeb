@@ -100,7 +100,7 @@ function ReservationTable() {
 
   return (
     <React.Fragment>
-      {reservationData.data 
+      {Array.isArray(reservationData.data) && reservationData.data.length
       ? (
         <div className="table-wrapper-scroll-y reservation-table-scrollbar">
           <table className="table table-bordered table-hover table-sm">
