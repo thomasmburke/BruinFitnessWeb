@@ -11,15 +11,8 @@ function ReservationTable() {
   const firestore = useFirestore();
   // This context object holds the state from the DatePicker component which sets the date
   const context = useContext(MyContext);
-   // Can't use .doc() after .orderBy() is applied to a collectionRef
-  //  const unorderedResevationRef = firestore.collection(
-  //   "schedules/Redwood City/dates/2021-01-15/classes"
-  // );
-   // Get a reference to the schedule collection for the currently selected date
-  // TODO: switch to the reservationsRef below when there is enough data and I am done testing
-  // const reservationRef = firestore.collection(
-  //   "schedules/Redwood City/dates/2021-01-15/classes"
-  // ).orderBy('time', 'asc');
+  // Can't use .doc() after .orderBy() is applied to a collectionRef
+  // Get a reference to the schedule collection for the currently selected date
   const reservationRef = firestore.collection(
     `schedules/Redwood City/dates/${context.state.firestoreDate}/classes`
   ).orderBy('time', 'asc');
