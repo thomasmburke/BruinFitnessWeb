@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /schedules/San%20Leandro/schedule/{item} {
+    match /schedules/Redwood%20City/schedule/{item} {
       allow read: if true;
     }
     // Matches any document in the dates collection as well as any document

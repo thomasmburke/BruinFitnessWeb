@@ -3,7 +3,7 @@ import { firestore } from "../../firebase";
 import "./ScheduleTable.css";
 
 // Get a reference to the schedule collection of interest
-const scheduleRef = firestore.collection("schedules/San Leandro/schedule");
+const scheduleRef = firestore.collection("schedules/Redwood City/schedule");
 
 function ScheduleTable() {
   const [scheduleData, setScheduleData] = useState(null);
