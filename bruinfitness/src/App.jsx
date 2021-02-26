@@ -7,6 +7,7 @@ import Admin from "./components/admin/Admin";
 import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
 import Contact from "./components/contact/Contact";
+import FAQ from "./components/faq/FAQ";
 import Home from "./components/home/Home";
 import Pricing from "./components/pricing/Pricing";
 import Schedule from "./components/schedule/Schedule";
@@ -28,6 +29,9 @@ function App() {
               </Route>
               <Route path="/team">
                 <Team />
+              </Route>
+              <Route path="/FAQ">
+                <FAQ />
               </Route>
               <Route path="/schedule">
                 <Schedule />
