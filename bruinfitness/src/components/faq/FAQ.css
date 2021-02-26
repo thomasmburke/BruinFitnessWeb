@@ -1,0 +1,16 @@
+.card-no-shadow:hover {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.accordion>.card>.card-header {
+    background-color: #343a40E6;
+}
+
+/* .accordion>.card>.card-header:hover,
+.accordion>.card>.card-header:active,
+.accordion>.card>.card-header:focus,
+.accordion>.card>.card-header:visited
+{
+    color: #039509;
+} */
