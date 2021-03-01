@@ -14,6 +14,7 @@ import "./WorkoutTabs.css";
 // Also that workoutTypeHeaders captures all workoutTypes listed in the DB
 
 function WorkoutTabs() {
+    const [defaultWorkoutPillKey, setDefaultWorkoutPillKey] = useState('Metcon');
     // equivalent of firebase.firestore(), but making use of React Context API to ensure it is a singleton
     const firestore = useFirestore();
     // This context object holds the state from the DatePicker component which sets the date
@@ -46,7 +47,8 @@ function WorkoutTabs() {
         <div>
             {/* Depending on the screen size the header is located in a different position */}
             {!isDesktop && <WebPageHeader header="Programming" additionalClassNames="remove-bottom-spacing"/>}
-            <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}>
+            {/* <Tab.Container id="workout-tabs" defaultActiveKey={workoutTypeHeaders[0]}> */}
+            <Tab.Container id="workout-tabs" defaultActiveKey={defaultWorkoutPillKey}>
                 {/* no margin top needed on bigger screens, but margin top required on smaller screens for when the COLs are stacked */}
                 <Row className="mt-4 mt-lg-0">
                     <Col sm={4} >

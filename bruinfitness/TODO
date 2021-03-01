@@ -1,13 +1,13 @@
-- make navbar navlinks active when currently being used
-- make the reservation upper limit a Firestore document instead of being hardcoded
-- make admin nav item appear for admins
+- make navbar navlinks active when currently being used (looks like I need withRouter: https://stackoverflow.com/questions/62721457/react-bootstrap-change-link-of-navbar-to-active)
+- make the reservation upper limit a Firestore document instead of being hardcoded (added a constants collection now I just have to read it)
+- make admin nav item appear for admins (awaiting actual PR to reactfire github)
 - create admin error component
 - Ensure there is an alert sent to an admin if one of the next 3 days doesn't have workout programming assigned to it yet
 
 WorkoutTab bugs and action items:
 - WorkoutTab defaults to selecting metcon, might want this to be more sophisticated
 - if a workout tab is selected and the date changes and that workout type doesn't exists than nothing is selected
-- Empty Progamming is not centered on tablet sized screens
+- Empty Progamming is not centered on tablet sized screens (nice to have)
 
 
 Data Model:
