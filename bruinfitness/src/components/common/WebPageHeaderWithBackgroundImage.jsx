@@ -13,7 +13,7 @@ function WebPageHeaderWithBackgroundImage() {
     return (
         <section className="dnow-regionsWrap">
             <div className="dnow-regionsContent">
-                <div className="card bg-dark text-white">
+                <div className="card bg-dark text-white card-no-shadow">
                 <img src="/images/crossfit_banner_stock_image_slim.png" alt="" />
                 <div className="overlay-div"></div>
                 <div
