@@ -41,6 +41,26 @@ function ContactForm() {
   const handleSubmit = (event) => {
     // When the form is submitted we write the corresponding workoutInfo to Firestore
     event.preventDefault();
+    
+    // Write to Firestore mail collection
+    mailRef
+    .add({
+      to: "tburke@bu.edu",
+      message: {
+        subject: "A new customer is inquiring about the gym!",
+        html: `Please follow up on the potential customer inquiry documented below.<br /><strong>Website user: </strong>${formName}<br /><strong>Email: </strong>${formEmail}<br /><strong>Message: </strong>${formMessage}`,
+      },
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+
+    // TODO: Reset the form
+
+    // trigger submit button animation
     fancySubmit();
   }
 
@@ -83,50 +103,7 @@ function ContactForm() {
                     <button  type="submit" className={`submitBtn ${fancySubmitClass}`}>{isCheckHidden.current ? "SUBMIT" : <FontAwesomeIcon icon={faCheck} color="white"/>}</button>
               </div>
             </Form>
-            {/* <form id="contact-form">
-              <div className="alert">Message Sent</div>
-              <div className="controls">
-                <div className="form-group">
-                  <input
-                    id="form_name"
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    placeholder="Enter your name."
-                    required="required"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    id="form_email"
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter your email."
-                    required="required"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <textarea
-                    id="form_message"
-                    name="message"
-                    className="form-control"
-                    placeholder="Add your message."
-                    rows="4"
-                    required="required"
-                  ></textarea>
-                </div>
-
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-md"
-                  value="Send message"
-                />
-              </div>
-            </form> */}
-            </ScrollAnimation>
+          </ScrollAnimation>
         </div>
     )
 }
