@@ -38,6 +38,12 @@ function ContactForm() {
   const [fancySubmitClass, setFancySubmitClass] = useState('');
   const isCheckHidden = useRef(true);
 
+  const resetForm = () => {
+    setFormName('');
+    setFormEmail('');
+    setFormMessage('');
+  }
+
   const handleSubmit = (event) => {
     // When the form is submitted we write the corresponding workoutInfo to Firestore
     event.preventDefault();
@@ -58,9 +64,9 @@ function ContactForm() {
       console.error("Error adding document: ", error);
     });
 
-    // TODO: Reset the form
-
-    // trigger submit button animation
+    // Reset the controlled form
+    resetForm();
+    // Trigger submit button animation
     fancySubmit();
   }
 
