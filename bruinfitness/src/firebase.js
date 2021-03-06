@@ -1,3 +1,4 @@
+import "firebase/analytics";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -15,3 +16,6 @@ firebase.initializeApp(config);
 
 // Initialize Firestore
 export var firestore = firebase.firestore();
+
+// Initialize Google Analytics for Firebase
+export var analytics = firebase.analytics();

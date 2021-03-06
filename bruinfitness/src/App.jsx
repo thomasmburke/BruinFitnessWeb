@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthCheck } from "reactfire";
 import "./App.css";
 import About from "./components/about/About";
-import Admin from "./components/admin/Admin";
+import AdminProgramming from "./components/admin/AdminProgramming";
+import AdminSchedule from "./components/admin/AdminSchedule";
 import Footer from "./components/common/Footer";
 import NavigationBar from "./components/common/NavigationBar";
 import Contact from "./components/contact/Contact";
@@ -45,12 +46,21 @@ function App() {
               <Route path="/login">
                 <SignInForm />
               </Route>
+
               <Route path="/admin/programming">
                 <AuthCheck fallback={<Home />}>
                 {/* <AuthCheck fallback={<Home />} requiredClaims={{admin: true}}> */}
-                  <Admin />
+                  <AdminProgramming />
                 </AuthCheck>
               </Route>
+
+              <Route path="/admin/schedule">
+                <AuthCheck fallback={<Home />}>
+                {/* <AuthCheck fallback={<Home />} requiredClaims={{admin: true}}> */}
+                  <AdminSchedule />
+                </AuthCheck>
+              </Route>
+
               {/* default route & Home page */}
               <Route path="/">
                 <Home />

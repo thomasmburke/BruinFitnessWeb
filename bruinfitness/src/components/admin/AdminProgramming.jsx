@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import { useFirestore } from "reactfire";
 import './Admin.css';
 
-function Admin() {
+function AdminProgramming() {
 
     // Mainly using useRef here so eslint doesn't make me put emptyWorkoutInfo as a trigger arg for useEffect
     const emptyWorkoutInfo = useRef({warmUp: '', skill: '', strength: '', coolDown: '', workout: ''});
@@ -186,4 +186,4 @@ function Admin() {
     )
 }
 
-export default Admin
+export default AdminProgramming

@@ -52,7 +52,6 @@ function NavigationBar() {
               {<Nav.Link onClick={() => signOut(auth)}>Sign Out</Nav.Link>}
               </div>
             </AuthCheck>
-            
           </Nav>
         </NavBar.Collapse>
       </Container>
