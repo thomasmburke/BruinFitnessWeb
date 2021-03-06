@@ -45,7 +45,7 @@ function App() {
               <Route path="/login">
                 <SignInForm />
               </Route>
-              <Route path="/admin">
+              <Route path="/admin/programming">
                 <AuthCheck fallback={<Home />}>
                 {/* <AuthCheck fallback={<Home />} requiredClaims={{admin: true}}> */}
                   <Admin />

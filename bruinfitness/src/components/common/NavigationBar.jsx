@@ -29,8 +29,7 @@ function NavigationBar() {
             <NavDropdown
               title="About"
               id="nav-dropdown"
-              renderMenuOnMount={true}
-            >
+              renderMenuOnMount={true}>
               <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
               <NavDropdown.Item href="/team">Team</NavDropdown.Item>
               <NavDropdown.Item href="/FAQ">FAQ</NavDropdown.Item>
@@ -38,6 +37,16 @@ function NavigationBar() {
             <Nav.Link href="/schedule">Schedule</Nav.Link>
             <Nav.Link href="/pricing">Pricing</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
+            
+            <AuthCheck>
+              {/* <AuthCheck fallback={<Home />} requiredClaims={{admin: true}}> */}
+              <NavDropdown
+                title="Admin"
+                renderMenuOnMount={true}>
+                <NavDropdown.Item href="/admin/programming">Programming</NavDropdown.Item>
+                <NavDropdown.Item href="/admin/schedule">Schedule</NavDropdown.Item>
+              </NavDropdown>
+            </AuthCheck>
             <AuthCheck fallback={<Nav.Link href="/login">Member SignIn</Nav.Link>}>
               <div>
               {<Nav.Link onClick={() => signOut(auth)}>Sign Out</Nav.Link>}
